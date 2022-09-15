@@ -238,9 +238,9 @@
               <a href="javascript:void(0)">
                 <img alt="..." class=" avatar" src="{{admin.avatar}}" />
   
-                <h5 class=" title">{{admin.email | lowercase}}</h5>
+                <h5 class=" title">{{admin.email}}</h5>
               </a>
-              <p class=" description"> {{admin.first_name | titlecase}} {{admin.last_name | titlecase}} </p>
+              <p class=" description"> {{admin.first_name}} {{admin.last_name}} </p>
               <button class=" btn btn-fill btn-danger center" type="submit">Add Admin</button>
             </div>
           </div>
@@ -271,8 +271,8 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let item of admin_users">
-                    <td>{{item.first_name | titlecase}} {{item.last_name | titlecase}}</td>
-                    <td>{{item.email | lowercase}}</td>
+                    <td>{{item.first_name}} {{item.last_name}}</td>
+                    <td>{{item.email}}</td>
                     <td>{{item.phone}}</td>
                     <td>{{item.role}}</td>
                     <td>{{item.access_level}}</td>

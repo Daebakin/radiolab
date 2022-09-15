@@ -66,7 +66,7 @@
                   <td class=" text-center">{{item.period}} {{item.duration}}</td>
                   <td class=" text-center">{{item.start_date_str | date}} - {{item.start_date_str | date: 'hh:mm a'}}</td>
                   <td class=" text-center">{{item.end_date_str | date}} - {{item.end_date_str | date: 'hh:mm a'}}</td>
-                  <td class=" text-center">{{item.status | titlecase}}</td>
+                  <td class=" text-center">{{item.status}}</td>
                   <td class=" text-center">
                     <button class=" btn btn-link" (click)="editLoan(item.loan_id)" type="button" placement="left" ngbTooltip="Edit Loan" container="body" >
                       <i class=" tim-icons icon-pencil"> </i>
@@ -101,7 +101,7 @@
                   <td class=" text-center">{{item.period}} {{item.duration}}</td>
                   <td class=" text-center">{{item.start_date_str | date}} - {{item.start_date_str | date: 'hh:mm a'}}</td>
                   <td class=" text-center">{{item.end_date_str | date}} - {{item.end_date_str | date: 'hh:mm a'}}</td>
-                  <td class=" text-center">{{item.status | titlecase}}</td>
+                  <td class=" text-center">{{item.status}}</td>
                   <td class=" text-center">
                     <button class=" btn btn-link" type="button" (click)="editLoan(item.loan_id)" placement="left" ngbTooltip="Edit Loan" container="body" >
                       <i class=" tim-icons icon-pencil"> </i>

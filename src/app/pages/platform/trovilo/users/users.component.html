@@ -58,17 +58,17 @@
                 </thead>
                 <tbody>
                   <tr (click)="manageUser(item)" *ngFor="let item of users">
-                    <td>{{item.first_name | titlecase}} {{item.last_name | titlecase}}</td>
-                    <td>{{item.email | lowercase}}</td>
+                    <td>{{item.first_name}} {{item.last_name}}</td>
+                    <td>{{item.email}}</td>
                     <td>({{item.country_code}}) {{item.phone}}</td>
-                    <td class=" text-center">{{item.country | uppercase}} ({{item.country_shortcode}})</td>
+                    <td class=" text-center">{{item.country }} ({{item.country_shortcode}})</td>
                     <td class=" text-center">{{item.last_login_date | date}} {{item.last_login_date | date:'hh:mm a'}}</td>
                     <td class=" text-center">
                         <mat-chip-list *ngIf="item.status == 'ACTIVE'">
-                            <mat-chip selected>{{item.status | uppercase}}</mat-chip>
+                            <mat-chip selected>{{item.status }}</mat-chip>
                         </mat-chip-list>
                         <mat-chip-list *ngIf="item.status != 'ACTIVE'">
-                            <mat-chip>{{item.status | uppercase}}</mat-chip>
+                            <mat-chip>{{item.status}}</mat-chip>
                         </mat-chip-list>
                     </td>
                     <td class=" text-center">{{item.createdAt | date}} {{item.createdAt | date:'hh:mm a'}}</td>

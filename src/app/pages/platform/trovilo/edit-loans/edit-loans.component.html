@@ -700,12 +700,12 @@
               <div class=" block block-four"></div>
               <a href="javascript:void(0)">
                 <img alt="..." class=" avatar" src="{{user.avatar}}" />
-                <h5 class=" title">{{user.email | lowercase}}</h5>
+                <h5 class=" title">{{user.email}}</h5>
                 <h5 class=" title">{{user.phone}}</h5>
               </a>
-              <p class=" description">{{user.first_name | titlecase}} {{user.middle_name | titlecase}} {{user.last_name | titlecase}}</p>
-              <p class=" description">{{user.country | uppercase}}</p>
-              <h5 class=" title">Status: {{user.status | uppercase}}</h5>
+              <p class=" description">{{user.first_name}} {{user.middle_name}} {{user.last_name}}</p>
+              <p class=" description">{{user.country}}</p>
+              <h5 class=" title">Status: {{user.status}}</h5>
             </div>
             <div class=" button-container">
               <button

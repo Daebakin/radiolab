@@ -555,9 +555,9 @@
                 <a href="javascript:void(0)">
                   <img alt="..." class=" avatar" [src]="user.avatar" />
     
-                  <h5 class=" title">{{user.email | lowercase}}</h5>
+                  <h5 class=" title">{{user.email}}</h5>
                 </a>
-                <p class=" description">{{user.first_name | titlecase}} {{user.middle_name | titlecase}} {{user.last_name | titlecase}}</p>
+                <p class=" description">{{user.first_name}} {{user.middle_name}} {{user.last_name}}</p>
               </div>
     
               <div class="spacer"></div>
@@ -659,7 +659,7 @@
                       <div>BANK NAME
                         <mat-icon class="example-tab-icon202">account_balance</mat-icon>
                       </div>
-                      <div class="header3">{{item.bank_name | titlecase}} 
+                      <div class="header3">{{item.bank_name}} 
                       </div>
                     </div>
                     <div class="header2">
@@ -786,7 +786,7 @@
                         </td>
                         <td>
                           <div class="spacer"></div>
-                          <p class=" title">{{item.country_currency_symbol}}{{item.total || 0 | number:'.2-2'}} - <span class="red">{{item.status | titlecase}}</span></p>
+                          <p class=" title">{{item.country_currency_symbol}}{{item.total || 0 | number:'.2-2'}} - <span class="red">{{item.status}}</span></p>
                           <p *ngIf="item.type == 'instant_cash_loan'" class=" text-muted">
                             Instant Cash Loan - ({{item.period}} {{item.duration}})
                            </p>
@@ -837,7 +837,7 @@
                       </td>
                       <td>
                         <div class="spacer"></div>
-                        <p class=" title">{{item.country_currency_symbol}}{{item.total || 0 | number:'.2-2'}} - <span class="green">{{item.status | titlecase}}</span></p>
+                        <p class=" title">{{item.country_currency_symbol}}{{item.total || 0 | number:'.2-2'}} - <span class="green">{{item.status}}</span></p>
                         <p *ngIf="item.type == 'instant_cash_loan'" class=" text-muted">
                          Instant Cash Loan - ({{item.period}} {{item.duration}})
                         </p>
@@ -971,7 +971,7 @@
           <div class=" card card-plain">
             <div class=" card-header">
               <h4 class=" card-title">Transaction History</h4>
-              <p class=" category">All transactions carried out by {{user.first_name | titlecase}} {{user.last_name | titlecase}}.</p>
+              <p class=" category">All transactions carried out by {{user.first_name}} {{user.last_name}}.</p>
             </div>
             <div class=" card-body">
               <div *ngIf="!loader" class=" table-responsive">
@@ -990,12 +990,12 @@
                   <tbody>
                     <tr *ngFor="let item of transactions">
                       <td>{{item.transaction_id || '-'}}</td>
-                      <td>{{item.title || 'N/A' | titlecase}}</td>
-                      <td>{{item.type || 'N/A' | lowercase}}</td>
-                      <td>{{item.sub_title || 'N/A' | titlecase}}</td>
+                      <td>{{item.title || 'N/A'}}</td>
+                      <td>{{item.type || 'N/A'}}</td>
+                      <td>{{item.sub_title || 'N/A'}}</td>
                       <td class=" text-center">{{item.country_currency_symbol}}{{item.amount || 0 | number:'.2-2'}}</td>
                       <td class=" text-center">{{item.createdAt || 'N/A' | date:'MMMM d, y - h:mm a'}}</td>
-                      <td>{{item.status || 'N/A' | titlecase}}</td>
+                      <td>{{item.status || 'N/A'}}</td>
                     </tr>
                   </tbody>
                 </table>
