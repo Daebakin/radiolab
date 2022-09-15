@@ -1,0 +1,79 @@
+
+<div *ngIf="!loading" class=" content">
+<div class="row">
+  <div class=" col-md-12">
+    <div class=" card card-plain">
+      <div class=" card-header">
+        <h4 class=" card-title">Transaction History</h4>
+        <p class=" category">All transactions across the LoanApp platform</p>
+      </div>
+      <div class=" card-body">
+        <div class=" table-responsive">
+          <table class=" table tablesorter" id="">
+            <thead class=" text-primary">
+              <tr>
+                <th>Transaction ID</th>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th class=" text-center">Remarks</th>
+                <th class=" text-center">Date</th>
+                <th class=" text-center">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of transactions">
+                <td>{{item.transaction_id}}</td>
+                <td>{{item.user_id}}</td>
+                <td>{{item.title | titlecase}}</td>
+                <td>{{item.type}}</td>
+                <td>{{item.country_currency_short}} {{item.amount || 0 | number:'.2-2'}}</td>
+                <td class=" text-center">{{item.sub_title | titlecase}}</td>
+                <td class=" text-center">{{item.createdAt | date}} - {{item.createdAt | date: 'hh:mm a'}}</td>
+                <td class=" text-center">{{item.status | titlecase}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- No results found -->
+        <div class="row">
+          <div class="col-md-12">
+
+            <app-no-result *ngIf="transactions.length == 0"></app-no-result>
+            
+          </div>
+        </div>
+
+        <div class="spacer"></div>
+
+        <!-- Navigator -->
+        <div class=" row">
+          <div class=" col-md-4">
+            <div (click)="goBack(segment)" *ngIf="startItem > 0" class=" card-header-add">
+                <h4 class=" card-title"><i class=" tim-icons icon-minimal-left"> </i> Back</h4>
+            </div>
+          </div>
+          <div class=" col-md-4">
+            <div class=" card-header-add3">
+                <h4 class=" card-title">Showing {{startItem || 0}} - {{endItem || 0}}</h4>
+            </div>
+          </div>
+          <div class=" col-md-4">
+            <div (click)="goNext(segment)" *ngIf="transactions.length != 0" class=" card-header-add2">
+                <h4 class=" card-title">Next <i class=" tim-icons icon-minimal-right"> </i></h4>
+            </div>
+            <div class=" spacer"></div>
+            <div class=" spacer"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Loader -->
+<app-loader *ngIf="loading"></app-loader>

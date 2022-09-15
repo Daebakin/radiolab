@@ -1,0 +1,330 @@
+
+<div *ngIf="!loading" class=" content">
+    <div class=" row">
+      <div class=" col-md-8">
+        <div class=" card">
+          <div class=" card-header"><h5 class=" title">MANAGE ADMIN</h5></div>
+          <hr/>
+          <div class=" card-body">
+            <form>
+              <div class=" row">
+                <div class=" col-md-4">
+                  <div class=" form-group">
+                    <label> User ID </label>
+                    <input
+                      class=" form-control"
+                      disabled
+                      placeholder="User ID"
+                      type="text"
+                      [value]="admin.user_id"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-4">
+                  <div class=" form-group">
+                    <label> Access Level </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Access Level"
+                      type="text"
+                      [value]="admin.access_level"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-4">
+                  <div class=" form-group">
+                    <label> Role</label>
+                    <input
+                      class=" form-control"
+                      placeholder="Role"
+                      type="text"
+                      disabled
+                      [value]="admin.role"
+                    />
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" row">
+                <div class=" col-md-4">
+                  <div class=" form-group">
+                    <label> First Name </label>
+                    <input
+                      class=" form-control"
+                      placeholder="First Name"
+                      type="text"
+                      [value]="admin.first_name"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-4">
+                  <div class=" form-group">
+                    <label> Last Name </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Last Name"
+                      type="text"
+                      [value]="admin.last_name"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-4">
+                  <div class=" form-group">
+                    <label> Display Name </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Display Name"
+                      type="text"
+                      [value]="admin.display_name"
+                    />
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" row">
+                <div class=" col-md-4">
+                  <div class=" form-group">
+                    <label> Email </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Email"
+                      type="text"
+                      [value]="admin.email"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-4">
+                  <div class=" form-group">
+                    <label> Phone </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Last Name"
+                      type="text"
+                      [value]="admin.phone"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-4">
+                  <div class=" form-group">
+                    <label> Password </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Password"
+                      type="text"
+                      [value]="admin.password"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class=" row">
+                <div class=" col-md-4">
+                  <div class=" form-group">
+                    <label> Address </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Address"
+                      type="text"
+                      [value]="admin.address"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-4">
+                  <div class=" form-group">
+                    <label> City </label>
+                    <input
+                      class=" form-control"
+                      placeholder="City"
+                      type="text"
+                      [value]="admin.city"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-4">
+                  <div class=" form-group">
+                    <label> State </label>
+                    <input
+                      class=" form-control"
+                      placeholder="State"
+                      type="text"
+                      [value]="admin.state"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class=" row">
+                <div class=" col-md-6">
+                  <div class=" form-group">
+                    <label> Status </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Status"
+                      type="text"
+                      [value]="admin.status"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-6">
+                  <div class=" form-group">
+                    <label> Remarks </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Status Reason"
+                      type="text"
+                      [value]="admin.status_reason"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class=" row">
+                <div class=" col-md-4">
+                  <div class=" form-group">
+                    <label> Last Login Date </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Last Login Date"
+                      type="text"
+                      disabled
+                      [value]="admin.last_login_date"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-4">
+                  <div class=" form-group">
+                    <label> Last Updated </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Last Updated"
+                      type="text"
+                      disabled
+                      [value]="admin.updatedAt"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-4">
+                  <div class=" form-group">
+                    <label> Date of Registration </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Date of Registration"
+                      type="text"
+                      disabled
+                      [value]="admin.sign_up_date"
+                    />
+                  </div>
+                </div>
+              </div>
+
+            </form>
+          </div>
+          <div class=" card-footer">
+            <button class=" btn btn-fill btn-danger" type="submit">Proceed</button>
+          </div>
+        </div>
+      </div>
+      <div class=" col-md-4">
+        <div class=" card card-user">
+          <div class=" card-body">
+            <p class=" card-text"></p>
+            <div class=" author">
+              <div class=" block block-one"></div>
+              <div class=" block block-two"></div>
+              <div class=" block block-three"></div>
+              <div class=" block block-four"></div>
+              <a href="javascript:void(0)">
+                <img alt="..." class=" avatar" src="{{admin.avatar}}" />
+  
+                <h5 class=" title">{{admin.email | lowercase}}</h5>
+              </a>
+              <p class=" description"> {{admin.first_name | titlecase}} {{admin.last_name | titlecase}} </p>
+              <button class=" btn btn-fill btn-danger center" type="submit">Add Admin</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="row">
+    <div class=" col-md-12">
+        <div class=" card">
+          <div class=" card-header">
+            <h4 class=" card-title">All Admin Users</h4>
+          </div>
+          <div class=" card-body">
+            <div class=" table-responsive">
+              <table class=" table tablesorter" id="">
+                <thead class=" text-primary">
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Role</th>
+                    <th>Access Level</th>
+                    <th>Status</th>
+                    <th>Date of Registration</th>
+                    <th class=" text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of admin_users">
+                    <td>{{item.first_name | titlecase}} {{item.last_name | titlecase}}</td>
+                    <td>{{item.email | lowercase}}</td>
+                    <td>{{item.phone}}</td>
+                    <td>{{item.role}}</td>
+                    <td>{{item.access_level}}</td>
+                    <td>{{item.status}}</td>
+                    <td>{{item.sign_up_date | date}} - {{item.sign_up_date | date:'hh:mm a'}}</td>
+                    <td class=" text-center">
+                        <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Admin" container="body" >
+                            <i class=" tim-icons icon-pencil"> </i>
+                        </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- No results found -->
+          <div class="row">
+            <div class="col-md-12">
+              <app-no-result *ngIf="admin_users.length == 0"></app-no-result>
+            </div>
+          </div>
+
+
+          <div class="spacer"></div>
+          <div class="spacer"></div>
+
+          <!-- Navigator -->
+          <div class=" row">
+            <div class=" col-md-5">
+              <div (click)="goBack()" *ngIf="startItem > 0" class=" card-header-add">
+                  <h4 class=" card-title"><i class=" tim-icons icon-minimal-left"> </i> Back</h4>
+              </div>
+            </div>
+            <div class=" col-md-2">
+              <div class=" card-header-add3">
+                  <h4 class=" card-title">Showing {{startItem || 0}} - {{endItem || 0}}</h4>
+              </div>
+            </div>
+            <div class=" col-md-5">
+              <div (click)="goNext()" *ngIf="admin_users.length != 0" class=" card-header-add2">
+                  <h4 class=" card-title">Next <i class=" tim-icons icon-minimal-right"> </i></h4>
+              </div>
+              <div class=" spacer"></div>
+              <div class=" spacer"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+<app-loader *ngIf="loading"></app-loader>

@@ -1,0 +1,730 @@
+
+<div class=" content">
+    <div class=" row">
+      <div class=" col-md-8">
+        <div class=" card">
+          <div class=" card-header"><h5 class=" title">MANAGE LOAN</h5></div>
+          <hr/>
+          <div class=" card-body">
+              <div class=" row">
+                <div class=" col-md-5">
+                  <div class=" form-group">
+                    <label> Loan ID </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Laon ID"
+                      type="text"
+                      disabled
+                      [value]="loan.loan_id"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-3">
+                  <div class=" form-group">
+                    <label> User ID </label>
+                    <input
+                      class=" form-control"
+                      placeholder="User ID"
+                      type="text"
+                      disabled
+                      [value]="loan.user_id"
+                    />
+                  </div>
+                </div>
+                <div class=" col-md-4">
+                  <div class=" form-group">
+                    <label> Loan Identifier </label>
+                    <input
+                      class=" form-control"
+                      placeholder="Loan Identifier"
+                      type="text"
+                      disabled
+                      [value]="loan.loan_identifier"
+                    />
+                  </div>
+                </div>
+             </div>
+
+             <div class=" row">
+              <div class=" col-md-4">
+                <div class=" form-group">
+                  <label> Country Currency </label>
+                  <input
+                    class=" form-control"
+                    placeholder="Country Currency"
+                    type="text"
+                    disabled
+                    [value]="loan.country_currency_full"
+                  />
+                </div>
+              </div>
+              <div class=" col-md-4">
+                <div class=" form-group">
+                  <label> Country Currency - ISO 3 </label>
+                  <input
+                    class=" form-control"
+                    placeholder="Country Currency - ISO 3"
+                    type="text"
+                    disabled
+                    [value]="loan.country_currency_short"
+                  />
+                </div>
+              </div>
+              <div class=" col-md-4">
+                <div class=" form-group">
+                  <label> Country Currency Symbol </label>
+                  <input
+                    class=" form-control"
+                    placeholder="Country Currency Symbol"
+                    type="text"
+                    disabled
+                    [value]="loan.country_currency_symbol"
+                  />
+                </div>
+              </div>
+           </div>
+
+             <div class=" row">
+              <div class=" col-md-6">
+                <div class=" form-group">
+                  <label> Loan Type </label>
+                  <input
+                    class=" form-control"
+                    placeholder="Laon Type"
+                    type="text"
+                    disabled
+                    [value]="loan.type"
+                  />
+                </div>
+              </div>
+              <div class=" col-md-6">
+                <div class=" form-group">
+                  <label> Loan Purpose </label>
+                  <input
+                    class=" form-control"
+                    placeholder="Loan Purpose"
+                    type="text"
+                    [value]="loan.purpose"
+                  />
+                </div>
+              </div>
+           </div>
+
+           <div class=" row">
+            <div class=" col-md-4">
+              <div class=" form-group">
+                <label> Amount ({{loan.country_currency_short}}) </label>
+                <input
+                  class=" form-control"
+                  placeholder="Amount"
+                  type="text"
+                  [value]="loan.amount"
+                />
+              </div>
+            </div>
+            <div class=" col-md-4">
+              <div class=" form-group">
+                <label> Interest ({{loan.country_currency_short}}) </label>
+                <input
+                  class=" form-control"
+                  placeholder="Interest"
+                  type="text"
+                  [value]="loan.interest"
+                />
+              </div>
+            </div>
+            <div class=" col-md-4">
+              <div class=" form-group">
+                <label> Total ({{loan.country_currency_short}}) </label>
+                <input
+                  class=" form-control"
+                  placeholder="Total"
+                  type="text"
+                  [value]="loan.total"
+                />
+              </div>
+            </div>
+         </div>
+
+         <div class=" row">
+          <div class=" col-md-4">
+            <div class=" form-group">
+              <label> Overdue Charges ({{loan.country_currency_short}}) </label>
+              <input
+                class=" form-control"
+                placeholder="Overdue Charges"
+                type="text"
+                [value]="loan.overdue_charge"
+              />
+            </div>
+          </div>
+          <div class=" col-md-4">
+            <div class=" form-group">
+              <label> Duration ({{loan.duration}}) </label>
+              <input
+                class=" form-control"
+                placeholder="Duration"
+                type="text"
+                [value]="loan.period"
+              />
+            </div>
+          </div>
+          <div class=" col-md-4">
+            <div class=" form-group">
+              <label> Overdue Duration ({{loan.duration}}) </label>
+              <input
+                class=" form-control"
+                placeholder="Overdue Duration"
+                type="text"
+                disabled
+                [value]="loan.overdue_days"
+              />
+            </div>
+          </div>
+       </div>
+
+
+
+       <div class=" row">
+        <div class=" col-md-6">
+          <div class=" form-check">
+            <label class=" form-check-label">
+              <input
+                class=" form-check-input"
+                [(ngModel)]="loan.sms_notification"
+                type="checkbox"
+                value=""
+              />
+
+              <span class=" form-check-sign">
+                <span class=" check"> </span>
+              </span> Loan SMS Notifications
+            </label>
+          </div>
+        </div>
+        <div class=" col-md-6">
+          <div class=" form-check">
+            <label class=" form-check-label">
+              <input
+                class=" form-check-input"
+                [(ngModel)]="loan.loan_guarantors_reminder"
+                type="checkbox"
+                value=""
+              />
+
+              <span class=" form-check-sign">
+                <span class=" check"> </span>
+              </span> Notify Guarantors for Loan Overdue
+            </label>
+          </div>
+        </div>
+      </div>
+
+
+
+       <div class="spacer"></div>
+       <hr/>
+       <div class="spacer"></div>
+
+       <div *ngFor="let option of loan.disbursement">
+      <div class=" row">
+        <div class=" col-md-11">
+          <h5 class=" title">Disbursement Account</h5>
+        </div>
+        <div class=" col-md-1">
+          <h5 class=" title">({{option.__v + 1}})</h5>
+        </div>
+        <div class=" col-md-4">
+          <div class=" form-group">
+            <label> Bank Code </label>
+            <input
+              class=" form-control"
+              placeholder="Bank Code"
+              type="text"
+              disabled
+              [value]="option.bank_code"
+            />
+          </div>
+        </div>
+        <div class=" col-md-4">
+          <div class=" form-group">
+            <label> Bank Name </label>
+            <input
+              class=" form-control"
+              placeholder="Bank Name"
+              type="text"
+              [value]="option.bank_name"
+            />
+          </div>
+        </div>
+        <div class=" col-md-4">
+          <div class=" form-group">
+            <label> Bank verification Number - BVN </label>
+            <input
+              class=" form-control"
+              placeholder="Bank verification Number - BVN"
+              type="text"
+              disabled
+              [value]="option.bvn"
+            />
+          </div>
+        </div>
+        <div class=" col-md-6">
+          <div class=" form-group">
+            <label> Account Name </label>
+            <input
+              class=" form-control"
+              placeholder="Account Name"
+              type="text"
+              [value]="option.account_name"
+            />
+          </div>
+        </div>
+        <div class=" col-md-6">
+          <div class=" form-group">
+            <label> Account Number </label>
+            <input
+              class=" form-control"
+              placeholder="Account Number"
+              type="text"
+              [value]="option.account_number"
+            />
+          </div>
+        </div>
+        <div class=" col-md-4">
+          <div class=" form-group">
+            <label> Account Currency </label>
+            <input
+              class=" form-control"
+              placeholder="Account Currency"
+              type="text"
+              disabled
+              [value]="option.country_currency_full"
+            />
+          </div>
+        </div>
+        <div class=" col-md-4">
+          <div class=" form-group">
+            <label> Account Currency - ISO 3 </label>
+            <input
+              class=" form-control"
+              placeholder="Account Currency - ISO 3"
+              type="text"
+              disabled
+              [value]="option.country_currency_short"
+            />
+          </div>
+        </div>
+        <div class=" col-md-4">
+          <div class=" form-group">
+            <label> Account Currency Symbol </label>
+            <input
+              class=" form-control"
+              placeholder="Account Currency Symbol"
+              type="text"
+              disabled
+              [value]="option.country_currency_symbol"
+            />
+          </div>
+        </div>
+        </div>
+
+        <div class="row">
+        <div class=" col-md-4">
+          <div class=" form-check">
+            <label class=" form-check-label">
+              <input
+                class=" form-check-input"
+                [(ngModel)]="option.is_default"
+                type="checkbox"
+                disabled
+                value=""
+              />
+
+              <span class=" form-check-sign">
+                <span class=" check"> </span>
+              </span> Default Bank Account
+            </label>
+          </div>
+        </div>
+        <div class=" col-md-4">
+          <div class=" form-check">
+            <label class=" form-check-label">
+              <input
+                class=" form-check-input"
+                [(ngModel)]="option.status"
+                type="checkbox"
+                disabled
+                value=""
+              />
+
+              <span class=" form-check-sign">
+                <span class=" check"> </span>
+              </span> Disbursement Status
+            </label>
+          </div>
+        </div>
+        <div class=" col-md-4">
+          <div class=" form-check">
+            <label class=" form-check-label">
+              <input
+                class=" form-check-input"
+                [(ngModel)]="option.verified"
+                type="checkbox"
+                disabled
+                value=""
+              />
+
+              <span class=" form-check-sign">
+                <span class=" check"> </span>
+              </span> Verified
+            </label>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="spacer"></div>
+        </div>
+
+        </div>
+        
+        <div class="row">
+        <div class=" col-md-6">
+          <div class=" form-group">
+            <label> Date Disbursed </label>
+            <input
+              class=" form-control"
+              placeholder="Date Created"
+              type="text"
+              disabled
+              [value]="option.createdAt"
+            />
+          </div>
+        </div>
+        <div class=" col-md-6">
+          <div class=" form-group">
+            <label> Last Updated </label>
+            <input
+              class=" form-control"
+              placeholder="Last Updated"
+              type="text"
+              disabled
+              [value]="option.updatedAt"
+            />
+          </div>
+        </div>
+     </div>
+
+    </div>
+
+     <div class="spacer"></div>
+     <hr/>
+     <div class="spacer"></div>
+
+     <div *ngFor="let option of loan.transfer" class=" row">
+      <div class=" col-md-12">
+        <h5 class=" title">Transfer Transaction</h5>
+      </div>
+      <div class=" col-md-4">
+        <div class=" form-group">
+          <label> Transfer ID </label>
+          <input
+            class=" form-control"
+            placeholder="Transfer ID"
+            type="text"
+            disabled
+            [value]="option.id"
+          />
+        </div>
+      </div>
+      <div class=" col-md-4">
+        <div class=" form-group">
+          <label> Bank Code </label>
+          <input
+            class=" form-control"
+            placeholder="Bank Code"
+            type="text"
+            disabled
+            [value]="option.bank_code"
+          />
+        </div>
+      </div>
+      <div class=" col-md-4">
+        <div class=" form-group">
+          <label> Bank Name </label>
+          <input
+            class=" form-control"
+            placeholder="Bank Name"
+            type="text"
+            disabled
+            [value]="option.bank_name"
+          />
+        </div>
+      </div>
+      <div class=" col-md-6">
+        <div class=" form-group">
+          <label> Account Name </label>
+          <input
+            class=" form-control"
+            placeholder="Account Name"
+            type="text"
+            disabled
+            [value]="option.fullname"
+          />
+        </div>
+      </div>
+      <div class=" col-md-6">
+        <div class=" form-group">
+          <label> Account Number </label>
+          <input
+            class=" form-control"
+            placeholder="Account Number"
+            type="text"
+            disabled
+            [value]="option.account_number"
+          />
+        </div>
+      </div>
+      <div class=" col-md-3">
+        <div class=" form-group">
+          <label> Currency </label>
+          <input
+            class=" form-control"
+            placeholder="Currency"
+            type="text"
+            disabled
+            [value]="option.currency"
+          />
+        </div>
+      </div>
+      <div class=" col-md-3">
+        <div class=" form-group">
+          <label> Debit Currency </label>
+          <input
+            class=" form-control"
+            placeholder="Debit Currency"
+            type="text"
+            disabled
+            [value]="option.debit_currency"
+          />
+        </div>
+      </div>
+      <div class=" col-md-3">
+        <div class=" form-group">
+          <label> Amount ({{option.currency}}) </label>
+          <input
+            class=" form-control"
+            placeholder="Amount"
+            type="text"
+            disabled
+            [value]="option.amount"
+          />
+        </div>
+      </div>
+      <div class=" col-md-3">
+        <div class=" form-group">
+          <label> Fees ({{option.currency}}) </label>
+          <input
+            class=" form-control"
+            placeholder="Fees"
+            type="text"
+            disabled
+            [value]="option.fee"
+          />
+        </div>
+      </div>
+      <div class=" col-md-6">
+        <div class=" form-group">
+          <label> Remarks </label>
+          <input
+            class=" form-control"
+            placeholder="Remarks"
+            type="text"
+            disabled
+            [value]="option.complete_message"
+          />
+        </div>
+      </div>
+      <div class=" col-md-6">
+        <div class=" form-group">
+          <label> Date Created </label>
+          <input
+            class=" form-control"
+            placeholder="Last Updated"
+            type="text"
+            disabled
+            [value]="option.created_at"
+          />
+        </div>
+      </div>
+   </div>
+
+   <div class="spacer"></div>
+   <hr/>
+   <div class="spacer"></div>
+
+     <div class=" row">
+      <div class=" col-md-12">
+        <h5 class=" title">Metadata</h5>
+      </div>
+      <div class=" col-md-6">
+        <div class=" form-group">
+          <label> Start Date </label>
+          <input
+            class=" form-control"
+            placeholder="Start Date"
+            type="text"
+            disabled
+            [value]="loan.start_date_str"
+          />
+        </div>
+      </div>
+      <div class=" col-md-6">
+        <div class=" form-group">
+          <label> End Date </label>
+          <input
+            class=" form-control"
+            placeholder="End Date"
+            type="text"
+            disabled
+            [value]="loan.end_date_str"
+          />
+        </div>
+      </div>
+   </div>
+
+     <div class=" row">
+      <div class=" col-md-4">
+        <div class=" form-group">
+          <label> Status </label>
+          <input
+            class=" form-control"
+            placeholder="Status"
+            type="text"
+            [value]="loan.status"
+          />
+        </div>
+      </div>
+      <div class=" col-md-8">
+        <div class=" form-group">
+          <label> Remarks </label>
+          <input
+            class=" form-control"
+            placeholder="Remarks"
+            type="text"
+            [value]="loan.status_message"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class=" col-md-6">
+        <div class=" form-check">
+          <label class=" form-check-label">
+            <input
+              class=" form-check-input"
+              [(ngModel)]="loan.approved"
+              type="checkbox"
+              value=""
+            />
+
+            <span class=" form-check-sign">
+              <span class=" check"> </span>
+            </span> Loan Approved
+          </label>
+        </div>
+      </div>
+      <div class=" col-md-6">
+        <div class=" form-check">
+          <label class=" form-check-label">
+            <input
+              class=" form-check-input"
+              [(ngModel)]="loan.disbursed"
+              type="checkbox"
+              value=""
+              disabled
+            />
+
+            <span class=" form-check-sign">
+              <span class=" check"> </span>
+            </span> Loan Disbursed
+          </label>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="spacer"></div>
+      </div>
+    </div>
+
+    <div class=" row">
+      <div class=" col-md-6">
+        <div class=" form-group">
+          <label> Date Created </label>
+          <input
+            class=" form-control"
+            placeholder="Date Created"
+            type="text"
+            disabled
+            [value]="loan.createdAt"
+          />
+        </div>
+      </div>
+      <div class=" col-md-6">
+        <div class=" form-group">
+          <label> Last Updated </label>
+          <input
+            class=" form-control"
+            placeholder="Last Updated"
+            type="text"
+            disabled
+            [value]="loan.updatedAt"
+          />
+        </div>
+      </div>
+   </div>
+
+          </div>
+          <div class=" card-footer">
+            <button class=" btn btn-fill btn-danger" type="submit">Proceed</button>
+          </div>
+        </div>
+      </div>
+      <div class=" col-md-4">
+        <div class=" card card-user">
+          <div class=" card-body">
+            <p class=" card-text"></p>
+            <div class=" author">
+              <div class=" block block-one"></div>
+              <div class=" block block-two"></div>
+              <div class=" block block-three"></div>
+              <div class=" block block-four"></div>
+              <a href="javascript:void(0)">
+                <img alt="..." class=" avatar" src="{{user.avatar}}" />
+                <h5 class=" title">{{user.email | lowercase}}</h5>
+                <h5 class=" title">{{user.phone}}</h5>
+              </a>
+              <p class=" description">{{user.first_name | titlecase}} {{user.middle_name | titlecase}} {{user.last_name | titlecase}}</p>
+              <p class=" description">{{user.country | uppercase}}</p>
+              <h5 class=" title">Status: {{user.status | uppercase}}</h5>
+            </div>
+            <div class=" button-container">
+              <button
+                (click)="goToUserProfile(user.user_id)"
+                class=" btn btn-icon btn-round btn-google"
+                href="javascript:void(0)"
+              >
+                <i class=" tim-icons icon-single-02"> </i>
+              </button>
+              <button
+                class=" btn btn-icon btn-round btn-google"
+                href="javascript:void(0)"
+              >
+                <i class=" tim-icons icon-trash-simple"> </i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,27 @@
+
+.center {
+    position: relative;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.set-height {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.logo-img2 {
+    padding: 10px;
+    height: 200px;
+    width: 200px;
+    display: block;
+    margin: auto;
+}
+
+.block {
+    height: 100% !important;
+    display: block;
+    margin: auto;
+}

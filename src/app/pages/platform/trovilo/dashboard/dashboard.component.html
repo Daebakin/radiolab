@@ -1,0 +1,279 @@
+
+<div  *ngIf="!loading" class=" content">
+  
+
+  <div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+          <div class="card-header card-header-success card-header-icon">
+              <div class="card-icon">
+                  <i class="material-icons">group</i>
+              </div>
+              <p class="card-category">Total Registered Users</p>
+              <div class="spacer"></div>
+              <h3 class="card-title2">{{usersLength || 0 | number:'.0-2' }}</h3>
+            </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+          <div class="card-header card-header-success card-header-icon">
+              <div class="card-icon">
+                  <i class="material-icons">person</i>
+              </div>
+              <p class="card-category">Total Active Users</p>
+              <div class="spacer"></div>
+              <h3 class="card-title2">{{statusCount.active || 0 | number:'.0-2'}}</h3>
+          </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+          <div class="card-header card-header-success card-header-icon">
+              <div class="card-icon">
+                  <i class="material-icons">group_off</i>
+              </div>
+              <p class="card-category">Total Inactive Users</p>
+              <div class="spacer"></div>
+              <h3 class="card-title2">{{statusCount.inactive || 0 | number:'.0-2'}}</h3>
+          </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+          <div class="card-header card-header-success card-header-icon">
+              <div class="card-icon">
+                  <i class="material-icons">no_accounts</i>
+              </div>
+              <p class="card-category">Total Blocked Users</p>
+              <div class="spacer"></div>
+              <h3 class="card-title2">{{statusCount.blocked || 0 | number:'.0-2'}}</h3>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+    <div class=" row">
+      <div class=" col-lg-6 col-md-12">
+        <div class=" card">
+          <div class=" card-header">
+            <h4 class=" card-title">Loans Pending Approval</h4>
+          </div>
+          <div class=" card-body">
+            <div class=" table-responsive">
+              <table class=" table tablesorter" id="">
+                <thead class=" text-primary">
+                  <tr>
+                    <th>Receiver Name</th>
+                    <th>Type</th>
+                    <th class=" text-center">Loan Amount</th>
+                    <th class=" text-center">Duration</th>
+                    <th class=" text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of pendingLoans">
+                    <td>{{item.loan.disbursement[0].account_name}}</td>
+                    <td>{{item.loan.type}}</td>
+                    <td class=" text-center">{{item.loan.country_currency_symbol}}{{item.loan.total || 0 | number:'.2-2'}}</td>
+                    <td class=" text-center">{{item.loan.period}} {{item.loan.duration}}</td>
+                    <td class=" text-center">
+                      <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Loan" container="body" >
+                        <i class=" tim-icons icon-pencil"> </i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+              <!-- No results found -->
+              <div class="row">
+                <div class="col-md-12">
+
+                  <app-no-result *ngIf="pendingLoans.length == 0"></app-no-result>
+                  
+                </div>
+              </div>
+
+              <div class="spacer"></div>
+
+              <!-- Navigator -->
+              <div class=" row">
+                <div class=" col-md-4">
+                  <div (click)="goBack('pendingLoans')" *ngIf="startItem > 0" class=" card-header-add">
+                      <h4 class=" card-title"><i class=" tim-icons icon-minimal-left"> </i> Back</h4>
+                  </div>
+                </div>
+                <div class=" col-md-4">
+                  <div class=" card-header-add3">
+                      <h4 class=" card-title">Showing {{startItem || 0}} - {{endItem || 0}}  <br>(Total: {{pendingLoansLength || 0}} )</h4>
+                  </div>
+                </div>
+                <div class=" col-md-4">
+                  <div (click)="goNext('pendingLoans')" *ngIf="pendingLoans.length != 0" class=" card-header-add2">
+                      <h4 class=" card-title">Next <i class=" tim-icons icon-minimal-right"> </i></h4>
+                  </div>
+                  <div class=" spacer"></div>
+                  <div class=" spacer"></div>
+                </div>
+              </div>
+
+          </div>
+        </div>
+      </div>
+
+
+    <div class=" col-lg-6 col-md-12">
+      <div class=" card">
+        <div class=" card-header">
+          <h4 class=" card-title">Loans Due Today {{todayDate | date}}</h4>
+        </div>
+        <div class=" card-body">
+          <div class=" table-responsive">
+            <table class=" table tablesorter" id="">
+              <thead class=" text-primary">
+                <tr>
+                  <th>Receiver Name</th>
+                  <th>Type</th>
+                  <th class=" text-center">Loan Amount</th>
+                  <th class=" text-center">Duration</th>
+                  <th class=" text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of dueTodayLoans">
+                  <td>{{item.loan.disbursement[0].account_name}}</td>
+                  <td>{{item.loan.type}}</td>
+                  <td class=" text-center">{{item.loan.country_currency_symbol}}{{item.loan.total || 0 | number:'.2-2'}}</td>
+                  <td class=" text-center">{{item.loan.period}} {{item.loan.duration}}</td>
+                  <td class=" text-center">
+                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Loan" container="body" >
+                      <i class=" tim-icons icon-pencil"> </i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+              <!-- No results found -->
+              <div class="row">
+                <div class="col-md-12">
+
+                  <app-no-result *ngIf="dueTodayLoans.length == 0"></app-no-result>
+                  
+                </div>
+              </div>
+
+              <div class="spacer"></div>
+
+              <!-- Navigator -->
+              <div class=" row">
+                <div class=" col-md-4">
+                  <div (click)="goBack('loanDueToday')" *ngIf="startItem > 0" class=" card-header-add">
+                      <h4 class=" card-title"><i class=" tim-icons icon-minimal-left"> </i> Back</h4>
+                  </div>
+                </div>
+                <div class=" col-md-4">
+                  <div class=" card-header-add3">
+                      <h4 class=" card-title">Showing {{startItem || 0}} - {{endItem || 0}}  <br>(Total: {{dueTodayLoans.length || 0}} )</h4>
+                  </div>
+                </div>
+                <div class=" col-md-4">
+                  <div (click)="goNext('loanDueToday')" *ngIf="dueTodayLoans.length != 0" class=" card-header-add2">
+                      <h4 class=" card-title">Next <i class=" tim-icons icon-minimal-right"> </i></h4>
+                  </div>
+                  <div class=" spacer"></div>
+                  <div class=" spacer"></div>
+                </div>
+              </div>
+
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+  
+    <div class=" row">
+
+      <div class=" col-lg-12 col-md-12">
+        <div class=" card">
+          <div class=" card-header">
+            <h4 class=" card-title">Overdue Loans</h4>
+          </div>
+          <div class=" card-body">
+            <div class=" table-responsive">
+              <table class=" table tablesorter" id="">
+                <thead class=" text-primary">
+                  <tr>
+                    <th>Receiver Name</th>
+                    <th>Type</th>
+                    <th class=" text-center">Loan Amount</th>
+                    <th class=" text-center">Overdue Fees</th>
+                    <th class=" text-center">Overdue (Days)</th>
+                    <th class=" text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of overdueLoans">
+                    <td>{{item.loan.disbursement[0].account_name}}</td>
+                    <td>{{item.loan.type}}</td>
+                    <td class=" text-center">{{item.loan.country_currency_symbol}}{{item.loan.amount || 0 | number:'.2-2'}}</td>
+                    <td class=" text-center">{{item.loan.country_currency_symbol}}{{item.loan.overdue_charge || 0 | number:'.2-2'}}</td>
+                    <td class=" text-center">{{item.loan.overdue_days}} days</td>
+                    <td class=" text-center">
+                      <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Loan" container="body" >
+                        <i class=" tim-icons icon-pencil"> </i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            
+              <!-- No results found -->
+              <div class="row">
+                <div class="col-md-12">
+
+                  <app-no-result *ngIf="overdueLoans.length == 0"></app-no-result>
+                  
+                </div>
+              </div>
+
+              <div class="spacer"></div>
+
+              <!-- Navigator -->
+              <div class=" row">
+                <div class=" col-md-4">
+                  <div (click)="goBack('overdueLoans')" *ngIf="startItem > 0" class=" card-header-add">
+                      <h4 class=" card-title"><i class=" tim-icons icon-minimal-left"> </i> Back</h4>
+                  </div>
+                </div>
+                <div class=" col-md-4">
+                  <div class=" card-header-add3">
+                      <h4 class=" card-title">Showing {{startItem || 0}} - {{endItem || 0}}  <br>(Total: {{overdueLoansLength || 0}} )</h4>
+                  </div>
+                </div>
+                <div class=" col-md-4">
+                  <div (click)="goNext('overdueLoans')" *ngIf="overdueLoans.length != 0" class=" card-header-add2">
+                      <h4 class=" card-title">Next <i class=" tim-icons icon-minimal-right"> </i></h4>
+                  </div>
+                  <div class=" spacer"></div>
+                  <div class=" spacer"></div>
+                </div>
+              </div>
+
+          </div>
+        </div>
+      </div>
+  
+    </div>
+
+  </div>
+  
+<!-- Loader -->
+<app-loader *ngIf="loading"></app-loader>

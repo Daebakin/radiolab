@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Delete?</h1>
+<div mat-dialog-content>
+  {{data.message}}
+</div>
+<div class="spacer"></div>
+<div>
+  <button class=" btn btn-fill btn-block"  (click)="closeModal('no', null)">No</button>
+  <button class=" btn btn-fill btn-danger btn-block"  (click)="closeModal('yes', data.task_id)">Yes</button>
+</div>

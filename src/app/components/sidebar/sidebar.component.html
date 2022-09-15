@@ -1,0 +1,24 @@
+<div class="logo">
+  <a href="#" class="simple-text logo-mini">
+    <div class="logo-img">
+      <img src="assets/png/trovilo.png" />
+    </div>
+  </a>
+  <a href="#" class="simple-text logo-normal">
+    LoanApp
+  </a>
+</div>
+<div class="sidebar-wrapper">
+  <ul class="nav">
+    <li
+      routerLinkActive="active"
+      *ngFor="let troviloMenu of troviloMenu"
+      class="{{ troviloMenu.class }} nav-item"
+    >
+      <a [routerLink]="[troviloMenu.path]">
+        <i class="tim-icons  {{ troviloMenu.icon }}"></i>
+        <p class="bold">{{ troviloMenu.title }}</p>
+      </a>
+    </li>
+  </ul>
+</div>

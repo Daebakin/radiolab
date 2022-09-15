@@ -1,0 +1,139 @@
+
+<div *ngIf="!loading" class=" content">
+    <div class=" row">
+      <div class=" col-md-12">
+        <div class=" card">
+            <div class=" row">
+              <div class=" col-md-10">
+                <div class=" card-header">
+                    <h4 class=" card-title">Registered Users</h4>
+                </div>
+              </div>
+              <div class=" spacer"></div>
+              <div class=" spacer"></div>
+              <div class=" col-md-1">
+                <span class="align-right right-rt2">
+                    <li class=" search-bar input-group">
+                    <button
+                        class=" btn btn-link"
+                        data-target="#searchModal"
+                        data-toggle="modal"
+                        (click)="open(content)"
+                        id="search-button"
+                    >
+                        <i class=" tim-icons icon-zoom-split"> </i>
+                        <span class=" d-lg-none d-md-block"> Search </span>
+                    </button>
+                    </li>
+                </span>
+              </div>
+              <div class=" col-md-1">
+                <span class="align-right">
+                    <li class=" search-bar input-group">
+                    <button
+                        class=" btn btn-link"
+                        (click)="refresh()"
+                    >
+                        <i class=" tim-icons icon-refresh-02"> </i>
+                        <span class=" d-lg-none d-md-block"> Refresh </span>
+                    </button>
+                    </li>
+                </span>
+              </div>
+            </div>
+          <div class=" card-body">
+            <div class=" table-responsive">
+              <table class=" table tablesorter" id="">
+                <thead class=" text-primary">
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th class=" text-center">Country</th>
+                    <th class=" text-center">Last Login</th>
+                    <th class=" text-center">Status</th>
+                    <th class=" text-center">Date of Registration</th>
+                    <th class=" text-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr (click)="manageUser(item)" *ngFor="let item of users">
+                    <td>{{item.first_name | titlecase}} {{item.last_name | titlecase}}</td>
+                    <td>{{item.email | lowercase}}</td>
+                    <td>({{item.country_code}}) {{item.phone}}</td>
+                    <td class=" text-center">{{item.country | uppercase}} ({{item.country_shortcode}})</td>
+                    <td class=" text-center">{{item.last_login_date | date}} {{item.last_login_date | date:'hh:mm a'}}</td>
+                    <td class=" text-center">
+                        <mat-chip-list *ngIf="item.status == 'ACTIVE'">
+                            <mat-chip selected>{{item.status | uppercase}}</mat-chip>
+                        </mat-chip-list>
+                        <mat-chip-list *ngIf="item.status != 'ACTIVE'">
+                            <mat-chip>{{item.status | uppercase}}</mat-chip>
+                        </mat-chip-list>
+                    </td>
+                    <td class=" text-center">{{item.createdAt | date}} {{item.createdAt | date:'hh:mm a'}}</td>
+                    <td class=" td-actions text-center">
+                      <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit User" container="body" >
+                        <i class=" tim-icons icon-pencil"> </i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Navigator -->
+          <div class=" row">
+            <div class=" col-md-5">
+              <div (click)="goBack()" *ngIf="startItem > 0" class=" card-header-add">
+                  <h4 class=" card-title"><i class=" tim-icons icon-minimal-left"> </i> Back</h4>
+              </div>
+            </div>
+            <div class=" col-md-2">
+              <div class=" card-header-add3">
+                  <h4 class=" card-title">Showing {{startItem || 0}} - {{endItem || 0}}</h4>
+              </div>
+            </div>
+            <div class=" col-md-5">
+              <div (click)="goNext()" *ngIf="users.length != 0" class=" card-header-add2">
+                  <h4 class=" card-title">Next <i class=" tim-icons icon-minimal-right"> </i></h4>
+              </div>
+              <div class=" spacer"></div>
+              <div class=" spacer"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<app-loader *ngIf="loading"></app-loader>
+
+
+<ng-template #content let-modal>
+  <div class=" modal-header">
+    <input
+      class=" form-control"
+      id="inlineFormInputGroup"
+      placeholder="Search by First Name, Last Name or Email"
+      [(ngModel)]= "search"
+      name="search"
+      (change)="searchItem(search)"
+      type="text"
+    />
+
+    <button
+      aria-label="Close"
+      class=" close"
+      data-dismiss="modal"
+      type="button"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <i class=" tim-icons icon-simple-remove"> </i>
+    </button>
+  </div>
+
+</ng-template>

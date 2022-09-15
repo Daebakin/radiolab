@@ -1,0 +1,54 @@
+<nav class=" navbar navbar-expand-lg navbar-absolute navbar-transparent">
+  <div class=" container-fluid">
+    <div class=" navbar-wrapper">
+      <div class=" navbar-toggle d-inline">
+        <button class=" navbar-toggler" type="button" (click)="sidebarToggle()">
+          <span class=" navbar-toggler-bar bar1"> </span>
+          <span class=" navbar-toggler-bar bar2"> </span>
+          <span class=" navbar-toggler-bar bar3"> </span>
+        </button>
+      </div>
+      <a class=" navbar-brand" href="javascript:void(0)"> LoanApp </a>
+    </div>
+    <div class=" navbar-collapse" [ngbCollapse]="isCollapsed" id="navigation">
+      <ul class=" navbar-nav ml-auto">
+        <li class=" nav-item" ngbDropdown>
+          <a
+            class=" nav-link"
+            data-toggle="dropdown"
+            href="javascript:void(0)"
+            ngbDropdownToggle
+          >
+            <div class=" photo">
+              <img alt="Profile Photo" src="{{avatar || 'assets/img/anime3.png'}}" />
+            </div>
+            <b class=" caret d-none d-lg-block d-xl-block"> </b>
+            <p class=" d-lg-none">Log out</p>
+          </a>
+          <ul class=" dropdown-navbar" ngbDropdownMenu>
+            <li (click)="goToProfile()" class=" nav-link">
+              <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
+                Profile
+              </a>
+            </li>
+            <li (click)="goToSettings()" class=" nav-link">
+              <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
+                Settings
+              </a>
+            </li>
+            <li class=" dropdown-divider"></li>
+            <li (click)="logOut()" class=" nav-link">
+              <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
+                Log out
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class=" separator d-lg-none"></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<app-loader *ngIf="loading"></app-loader>
+

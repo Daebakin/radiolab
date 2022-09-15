@@ -1,0 +1,1077 @@
+
+<div *ngIf="!loading" class=" content">
+
+  <div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+          <div class="card-header card-header-success card-header-icon">
+              <div class="card-icon">
+                  <i class="material-icons">paid</i>
+              </div>
+              <p class="card-category">Total Transactions</p>
+              <div class="spacer"></div>
+              <h3 class="card-title2">{{profile.country_currency_short}} {{ total_transactions_monthly || 0 | number:'.2-2'}}</h3>
+            </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+          <div class="card-header card-header-success card-header-icon">
+              <div class="card-icon">
+                  <i class="material-icons">account_balance</i>
+              </div>
+              <p class="card-category">Available Balance</p>
+              <div class="spacer"></div>
+              <h3 class="card-title2">{{profile.country_currency_short}} {{ wallet.available_balance || 0 | number:'.2-2'}}</h3>
+          </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+          <div class="card-header card-header-success card-header-icon">
+              <div class="card-icon">
+                  <i class="material-icons">pending</i>
+              </div>
+              <p class="card-category">Pending Balance</p>
+              <div class="spacer"></div>
+              <h3 class="card-title2">{{profile.country_currency_short}} {{ wallet.pending_balance || 0 | number:'.2-2'}}</h3>
+          </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+          <div class="card-header card-header-success card-header-icon">
+              <div class="card-icon">
+                  <i class="material-icons">scoreboard</i>
+              </div>
+              <p class="card-category">Profile Score</p>
+              <div class="spacer"></div>
+              <h3 class="card-title2">{{ profile_score.profile_score || 0 }}{{profile_score.unit}}</h3>
+          </div>
+      </div>
+    </div>
+  </div>
+  
+    <div class=" row">
+      <div class=" col-12">
+        <div class=" card card-chart">
+          <div class=" card-header">
+            <div class=" row">
+              <div class=" col-sm-6 text-left">
+                <h5 class=" card-category">Total Transactions</h5>
+                <h2 class=" card-title">Transaction Activity</h2>
+              </div>
+              <div class=" col-sm-6">
+                <div
+                  class=" btn-group btn-group-toggle float-right"
+                  data-toggle="buttons"
+                >
+                  <label class=" btn btn-sm btn-danger btn-simple" (click)="data=datasets[0];updateOptions();clicked=true;clicked1=false;clicked2=false" [ngClass]="{'active':clicked===true}">
+                    <input checked="checked" name="options" type="radio" />
+  
+                    <span
+                      class=" d-none d-sm-block d-md-block d-lg-block d-xl-block"
+                    >
+                    {{ year | date: "yyyy" }}
+                    </span>
+                    <span class=" d-block d-sm-none">
+                      <i class=" tim-icons icon-single-02"> </i>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class=" card-body">
+            <div class=" chart-area"><canvas id="chartBig1"> </canvas></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class=" row">
+      <div class=" col-lg-6">
+        <div class=" card card-chart">
+          <div class=" card-header">
+            <h5 class=" card-category">Weekly Transactions</h5>
+            <h3 class=" card-title">
+              <i class=" tim-icons icon-money-coins text-success"> </i> {{profile.country_currency_short}} {{total_transactions_daily || 0  | number:'.2-2'}}
+            </h3>
+          </div>
+          <div class=" card-body">
+            <div class=" chart-area"><canvas id="chartLineGreen"> </canvas></div>
+          </div>
+        </div>
+      </div>
+      <div class=" col-lg-6">
+        <div class=" card card-chart">
+          <div class=" card-header">
+            <h5 class=" card-category">Yearly Transactions</h5>
+            <h3 class=" card-title">
+              <i class=" tim-icons icon-money-coins text-info"> </i> {{profile.country_currency_short}} {{total_transactions_monthly || 0  | number:'.2-2'}}
+            </h3>
+          </div>
+          <div class=" card-body">
+            <div class=" chart-area"><canvas id="CountryChart"> </canvas></div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<div class="row">
+  <div class=" col-lg-12">
+  <mat-tab-group (selectedTabChange)="onTabChanged($event.index)">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">manage_accounts</mat-icon>
+        Account
+      </ng-template>
+
+
+      <div class=" row">
+        <div class=" col-md-8">
+          <div class=" card">
+            <div class=" card-header"><h5 class=" title">MANAGE PROFILE</h5></div>
+            <hr/>
+            <div class=" card-body">
+    
+                <div class=" row">
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label> User ID </label>
+                      <input
+                        class=" form-control"
+                        disabled
+                        placeholder="User ID"
+                        type="text"
+                        [value]="user.user_id"
+                      />
+                    </div>
+                  </div>
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label> Platform Name </label>
+                      <input
+                        class=" form-control"
+                        placeholder="Platform Name"
+                        type="text"
+                        disabled
+                        [value]="user.reg_platform"
+                      />
+                    </div>
+                  </div>
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label for="exampleInputEmail1"> Referral Code </label>
+                      <input
+                        class=" form-control"
+                        placeholder="Referral Code"
+                        type="text"
+                        disabled
+                        [value]="user.referral_code"
+                      />
+                    </div>
+                  </div>
+                </div>
+          
+                <div class=" row">
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label> First Name </label>
+                      <input
+                        class=" form-control"
+                        placeholder="First Name"
+                        type="text"
+                        [value]="user.first_name"
+                      />
+                    </div>
+                  </div>
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label> Middle Name </label>
+                      <input
+                        class=" form-control"
+                        placeholder="Middle Name"
+                        type="text"
+                        [value]="user.middle_name"
+                      />
+                    </div>
+                  </div>
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label for="exampleInputEmail1"> Last Name </label>
+                      <input
+                        class=" form-control"
+                        placeholder="Last Name"
+                        type="text"
+                        [value]="user.last_name"
+                      />
+                    </div>
+                  </div>
+                </div>
+    
+                <div class=" row">
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label> Email Address </label>
+                      <input
+                        class=" form-control"
+                        placeholder="Email Address"
+                        type="text"
+                        [value]="user.email"
+                      />
+                    </div>
+                  </div>
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label> Phone Number </label>
+                      <input
+                        class=" form-control"
+                        placeholder="Phone Number"
+                        type="text"
+                        [value]="user.country_code + ' - ' + user.phone"
+                      />
+                    </div>
+                  </div>
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label for="exampleInputEmail1"> Last Verified Phone Number </label>
+                      <input
+                        disabled
+                        class=" form-control"
+                        placeholder="Last Verified Phone Number"
+                        type="text"
+                        [value]="user.country_code + ' - ' + user.last_verified_phone"
+                      />
+                    </div>
+                  </div>
+                </div>
+    
+                <div class=" row">
+                  <div class=" col-md-5">
+                    <div class=" form-group">
+                      <label for="exampleInputEmail1"> Bank Verification Number </label>
+                      <input
+                        class=" form-control"
+                        placeholder="Bank Verification Number"
+                        type="text"
+                        [value]="profile.bvn"
+                      />
+                      <label> * BVN - For Individuals from Nigeria Only </label>
+                    </div>
+                  </div>
+                  <div class=" col-md-3">
+                    <div class=" form-group">
+                      <label> Gender </label>
+                      <input type="text"
+                      class=" form-control"
+                      placeholder="Gender"
+                      type="text"
+                      [(ngModel)]="profile.gender"
+                      [matAutocomplete]="auto1">
+                      <mat-autocomplete #auto1="matAutocomplete">
+                          <mat-option
+                          (click)="selectGender('Male')" value="Male">
+                           Male
+                          </mat-option>
+                          <mat-option
+                          (click)="selectGender('Female')" value="Female">
+                           Female
+                          </mat-option>
+                      </mat-autocomplete>
+                    </div>
+                  </div>
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label> Date of Birth </label>
+                      <input class=" form-control" [for]="picker" [(ngModel)]="profile.date_of_birth" placeholder="Date of Birth" [matDatepicker]="picker">
+                      <mat-datepicker-toggle [for]="picker"></mat-datepicker-toggle> <label> * Click icon to select date </label>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </div>
+                  </div>
+                </div>
+    
+                <div class=" row">
+                  <div class=" col-md-8">
+                    <div class=" form-group">
+                      <label> Address </label>
+                      <input
+                        class=" form-control"
+                        placeholder="Address"
+                        type="text"
+                        [value]="user.address"
+                      />
+                    </div>
+                  </div>
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label> Postal Code </label>
+                      <input
+                        class=" form-control"
+                        placeholder="Postal Code"
+                        type="text"
+                        [value]="user.postal_code"
+                      />
+                    </div>
+                  </div>
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label for="exampleInputEmail1">  City </label>
+                      <input
+                        class=" form-control"
+                        placeholder="City"
+                        type="text"
+                        [value]="user.city"
+                      />
+                    </div>
+                  </div>
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label for="exampleInputEmail1"> State </label>
+                      <input
+                        class=" form-control"
+                        placeholder="State"
+                        type="text"
+                        [value]="user.state"
+                      />
+                    </div>
+                  </div>
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label for="exampleInputEmail1"> Country </label>
+                      <input
+                        class=" form-control"
+                        placeholder="Country"
+                        type="text"
+                        disabled
+                        [value]="user.country + ' - ' + user.country_shortcode"
+                      />
+                    </div>
+                  </div>
+                </div>
+    
+                <div class=" row">
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label> Country Currency </label>
+                      <input
+                        class=" form-control"
+                        disabled
+                        placeholder="Country Currency"
+                        type="text"
+                        [value]="profile.country_currency_full"
+                      />
+                    </div>
+                  </div>
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label> Country Currency - ISO 3 </label>
+                      <input
+                        class=" form-control"
+                        disabled
+                        placeholder="Country Currency - ISO 3"
+                        type="text"
+                        [value]="profile.country_currency_short"
+                      />
+                    </div>
+                  </div>
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label> Country Currency Symbol </label>
+                      <input
+                        class=" form-control"
+                        disabled
+                        placeholder="Country Currency Symbol"
+                        type="text"
+                        [value]="profile.country_currency_symbol"
+                      />
+                    </div>
+                  </div>
+                  <div class=" col-md-6">
+                    <div class=" form-group">
+                      <label for="exampleInputEmail1"> Profile Status </label>
+                      <input
+                        class=" form-control"
+                        disabled
+                        placeholder="Profile Status"
+                        type="text"
+                        [value]="profile.status"
+                      />
+                    </div>
+                  </div>
+                  <div class=" col-md-6">
+                    <div class=" form-group">
+                      <label for="exampleInputEmail1"> Account Status </label>
+                      <input
+                        class=" form-control"
+                        disabled
+                        placeholder="Account Status"
+                        type="text"
+                        [value]="user.status"
+                      />
+                    </div>
+                  </div>
+                </div>
+    
+                <div class=" row">
+                  <div class=" col-md-4">
+                    <div class=" form-check">
+                      <label class=" form-check-label">
+                        <input
+                          class=" form-check-input"
+                          [(ngModel)]="user.phone_verified"
+                          type="checkbox"
+                          value=""
+                        />
+    
+                        <span class=" form-check-sign">
+                          <span class=" check"> </span>
+                        </span> Phone Verified
+                      </label>
+                    </div>
+                  </div>
+                  <div class=" col-md-4">
+                    <div class=" form-check">
+                      <label class=" form-check-label">
+                        <input
+                          class=" form-check-input"
+                          [(ngModel)]="user.terms_of_use"
+                          type="checkbox"
+                          value=""
+                        />
+    
+                        <span class=" form-check-sign">
+                          <span class=" check"> </span>
+                        </span> Terms of Use
+                      </label>
+                    </div>
+                  </div>
+                  <div class=" col-md-4">
+                    <div class=" form-check">
+                      <label class=" form-check-label">
+                        <input
+                          class=" form-check-input"
+                          [(ngModel)]="user.newsletter"
+                          type="checkbox"
+                          value=""
+                        />
+    
+                        <span class=" form-check-sign">
+                          <span class=" check"> </span>
+                        </span> Newsletter
+                      </label>
+                    </div>
+                  </div>
+                  <div class=" col-md-4">
+                    <div class=" form-check">
+                      <label class=" form-check-label">
+                        <input
+                          class=" form-check-input"
+                          [(ngModel)]="profile.visibility"
+                          type="checkbox"
+                          value=""
+                        />
+    
+                        <span class=" form-check-sign">
+                          <span class=" check"> </span>
+                        </span> Profile Visibility
+                      </label>
+                    </div>
+                  </div>
+                  <div class=" col-md-4">
+                    <div class=" form-check">
+                      <label class=" form-check-label">
+                        <input
+                          class=" form-check-input"
+                          [(ngModel)]="profile.automatic_approval"
+                          type="checkbox"
+                          value=""
+                        />
+    
+                        <span class=" form-check-sign">
+                          <span class=" check"> </span>
+                        </span> Automatic Loan Approval
+                      </label>
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="spacer"></div>
+    
+                <div class=" row">
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label> Last Login Date </label>
+                      <input
+                        class=" form-control"
+                        placeholder="Last Login Date"
+                        type="text"
+                        disabled
+                        [value]="user.last_login_date"
+                      />
+                    </div>
+                  </div>
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label> Last Updated  </label>
+                      <input
+                        class=" form-control"
+                        placeholder="Last Updated"
+                        type="text"
+                        disabled
+                        [value]="user.updatedAt"
+                      />
+                    </div>
+                  </div>
+                  <div class=" col-md-4">
+                    <div class=" form-group">
+                      <label for="exampleInputEmail1"> Date of Registration </label>
+                      <input
+                        class=" form-control"
+                        placeholder="Date of Registration"
+                        type="text"
+                        disabled
+                        [value]="user.createdAt"
+                      />
+                    </div>
+                  </div>
+                </div>
+    
+            </div>
+            <div class=" card-footer">
+              <button class=" btn btn-fill btn-danger" type="submit">Save</button>
+            </div>
+          </div>
+        </div>
+        <div class=" col-md-4">
+          <div class=" card card-user">
+            <div class=" card-body">
+              <p class=" card-text"></p>
+              <div class=" author">
+                <div class=" block block-one"></div>
+                <div class=" block block-two"></div>
+                <div class=" block block-three"></div>
+                <div class=" block block-four"></div>
+                <a href="javascript:void(0)">
+                  <img alt="..." class=" avatar" [src]="user.avatar" />
+    
+                  <h5 class=" title">{{user.email | lowercase}}</h5>
+                </a>
+                <p class=" description">{{user.first_name | titlecase}} {{user.middle_name | titlecase}} {{user.last_name | titlecase}}</p>
+              </div>
+    
+              <div class="spacer"></div>
+    
+              <div class=" form-group">
+                <label class="display-input"> Account Type </label>
+                <input type="text"
+                class=" form-control"
+                placeholder="Account Type"
+                type="text"
+                [(ngModel)]="profile.account_type"
+                [matAutocomplete]="auto2">
+                <mat-autocomplete #auto2="matAutocomplete">
+                    <mat-option
+                    (click)="selectAccountType('customer')" value="Customer">
+                     Customer
+                    </mat-option>
+                    <mat-option
+                    (click)="selectAccountType('vendor')" value="Vendor">
+                     Vendor
+                    </mat-option>
+                </mat-autocomplete>
+              </div>
+              <div class=" form-group">
+                <label class="display-input"> Profile Status </label>
+                <input type="text"
+                class=" form-control"
+                placeholder="Profile Status"
+                type="text"
+                [(ngModel)]="profile.status"
+                [matAutocomplete]="auto3">
+                <mat-autocomplete #auto3="matAutocomplete">
+                  <mat-option
+                  (click)="selectAccountStatus('ACTIVE')" value="ACTIVE">
+                  ACTIVE
+                  </mat-option>
+                  <mat-option
+                  (click)="selectAccountStatus('INACTIVE')" value="INACTIVE">
+                   INACTIVE
+                  </mat-option>
+                </mat-autocomplete>
+              </div>
+              <div class=" form-group">
+                <label class="display-input"> Account Status </label>
+                <input type="text"
+                class=" form-control"
+                placeholder="Account Status"
+                type="text"
+                [(ngModel)]="user.status"
+                [matAutocomplete]="auto4">
+                <mat-autocomplete #auto4="matAutocomplete">
+                    <mat-option
+                    (click)="selectAccountStatus('ACTIVE')" value="ACTIVE">
+                    ACTIVE
+                    </mat-option>
+                    <mat-option
+                    (click)="selectAccountStatus('INACTIVE')" value="INACTIVE">
+                     INACTIVE
+                    </mat-option>
+                    <mat-option
+                    (click)="selectAccountStatus('SUSPENDED')" value="SUSPENDED">
+                     SUSPENDED
+                    </mat-option>
+                    <mat-option
+                    (click)="selectAccountStatus('BLOCKED')" value="BLOCKED">
+                     BLOCKED
+                    </mat-option>
+                </mat-autocomplete>
+              </div>
+              <div class=" button-container">
+                <button class=" btn btn-fill btn-danger" type="submit">Update</button> 
+              </div>
+            </div>
+            <div class=" card-footer">
+              <div class=" button-container">
+                <button
+                  class=" btn btn-icon btn-round btn-twitter"
+                  href="javascript:void(0)"
+                >
+                  <i class=" tim-icons icon-button-power"> </i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <mat-accordion *ngFor="let item of virtual_accounts" class="example-headers-align">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Show Bank Account
+                </mat-panel-title>
+                <mat-panel-description>
+                  {{wallet.country_currency_short}} 
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+                <div class="row">
+                  <div class="col-md-12 col-pad">
+                    <div class="header2">
+                      <div>BANK NAME
+                        <mat-icon class="example-tab-icon202">account_balance</mat-icon>
+                      </div>
+                      <div class="header3">{{item.bank_name | titlecase}} 
+                      </div>
+                    </div>
+                    <div class="header2">
+                    <div>ACCOUNT NUMBER 
+                      <mat-icon class="example-tab-icon202">pin</mat-icon>
+                    </div>
+                      <div class="header3">{{item.account_number}} 
+                      </div>
+                    </div>
+                    <div class="header2">
+                      <div>ACCOUNT NAME
+                        <mat-icon class="example-tab-icon202">person</mat-icon>
+                      </div>
+                      <div class="header3">{{item.account_name}} 
+                      </div>
+                    </div>
+                    <div class="header2">
+                      <div>CURRENCY
+                        <mat-icon class="example-tab-icon202">attach_money</mat-icon>
+                      </div>
+                      <div class="header3">{{wallet.country_currency_short}} 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </mat-expansion-panel>
+          </mat-accordion>          
+
+        </div>
+      </div>
+
+      
+    </mat-tab>
+  
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">credit_card</mat-icon>
+        Credit/Debit Cards
+      </ng-template>
+  
+        <!-- No results found -->
+        <app-no-result></app-no-result>
+
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">account_balance_wallet</mat-icon>
+        Loans
+      </ng-template>
+  
+      <div class="spacer"></div>
+
+        <div  *ngIf="!loader" class="row">
+          <div *ngFor="let item of loan_types" class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">request_quote</i>
+                    </div>
+                    <p *ngIf="item.name =='instant_cash_loan'" class="card-category">Instant Cash Loan</p>
+                    <p *ngIf="item.name =='mobile_topup_loan'" class="card-category">Mobile Topup Loan</p>
+                    <p *ngIf="item.name =='business_loan'" class="card-category">Business Loan</p>
+                    <p *ngIf="item.name =='utility_loan'" class="card-category">Utility Loan</p>
+                    <div class="spacer"></div>
+                    <h3 class="card-title23">{{loan_limits.country_currency_short}} {{ item.min_amount || 0 | number:'.2-2'}} <span class="right">min</span></h3>
+                    <p> ---------------- </p>
+                     <h3 class="card-title23">{{loan_limits.country_currency_short}} {{ item.max_amount || 0 | number:'.2-2'}} <span class="right">max</span></h3>
+                  </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div *ngIf="!loader" class=" row">
+          <div class=" col-lg-6 col-md-12">
+          <div class=" card card-tasks">
+            <div class=" card-header">
+              <h6 *ngIf="segment == 'pending'" class=" title d-inline">LOANS ({{pendingLoans.length || 0}})</h6>
+              <h6 *ngIf="segment == 'completed'" class=" title d-inline">LOANS ({{completedLoans.length || 0}})</h6>
+              <p *ngIf="segment == 'pending'" class=" card-category d-inline">Active Loans</p>
+              <p *ngIf="segment == 'completed'" class=" card-category d-inline">Completed Loans</p>
+              <div ngbDropdown>
+                <button
+                  class=" btn btn-link btn-icon"
+                  data-toggle="dropdown"
+                  ngbDropdownToggle
+                  type="button"
+                >
+                  <i class=" tim-icons icon-settings-gear-63"> </i>
+                </button>
+                <div
+                  aria-labelledby="dropdownMenuLink"
+                  class=" dropdown-menu-right"
+                  ngbDropdownMenu
+                >
+                  <a href="javascript:void(0)" (click)="changeSegment('pending')" ngbDropdownItem> Active Loans </a>
+                  <a href="javascript:void(0)" (click)="changeSegment('completed')" ngbDropdownItem> Completed Loans </a>
+                </div>
+              </div>
+            </div>
+            <div class=" card-body">
+              <div class=" table-full-width table-responsive">
+
+                <table *ngIf="segment == 'pending'" class=" table">
+                    <tbody>
+  
+                      <tr *ngFor="let item of pendingLoans">
+                        <td>
+                          <div class=" form-check">
+                            <label class=" form-check-label">
+                              <input
+                                class=" form-check-input"
+                                type="checkbox"
+                                [(ngModel)]="checkbox"
+                                [value]="checkbox"
+                              />
+      
+                              <span  class=" form-check-sign">
+                                <span class=" check"> </span>
+                              </span>
+                            </label>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="spacer"></div>
+                          <p class=" title">{{item.country_currency_symbol}}{{item.total || 0 | number:'.2-2'}} - <span class="red">{{item.status | titlecase}}</span></p>
+                          <p *ngIf="item.type == 'instant_cash_loan'" class=" text-muted">
+                            Instant Cash Loan - ({{item.period}} {{item.duration}})
+                           </p>
+                           <p *ngIf="item.type == 'mobile_topup_loan'" class=" text-muted">
+                            Mobile Topup Loan - ({{item.period}} {{item.duration}})
+                           </p>
+                           <p *ngIf="item.type == 'business_loan'" class=" text-muted">
+                            Business Loan - ({{item.period}} {{item.duration}})
+                           </p>
+                           <p *ngIf="item.type == 'utility_loan'" class=" text-muted">
+                            Utility Cash Loan - ({{item.period}} {{item.duration}})
+                           </p>
+                        </td>
+                        <td class=" td-actions text-right">
+                          <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Task" container="body" >
+                            <i class=" tim-icons icon-pencil"> </i>
+                          </button>
+                          <div>
+                            <p class=" card-category d-inline">Start Date: {{item.start_date_str | date}}</p>
+                            <br>
+                            <p class=" card-category d-inline">End Date: {{item.end_date_str | date}}</p>
+                          </div>
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                  
+
+                <table *ngIf="segment == 'completed'" class=" table">
+                  <tbody>
+
+                    <tr *ngFor="let item of completedLoans">
+                      <td>
+                        <div class=" form-check">
+                          <label class=" form-check-label">
+                            <input
+                              class=" form-check-input"
+                              type="checkbox"
+                              value=""
+                            />
+    
+                            <span class=" form-check-sign">
+                              <span class=" check"> </span>
+                            </span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="spacer"></div>
+                        <p class=" title">{{item.country_currency_symbol}}{{item.total || 0 | number:'.2-2'}} - <span class="green">{{item.status | titlecase}}</span></p>
+                        <p *ngIf="item.type == 'instant_cash_loan'" class=" text-muted">
+                         Instant Cash Loan - ({{item.period}} {{item.duration}})
+                        </p>
+                        <p *ngIf="item.type == 'mobile_topup_loan'" class=" text-muted">
+                         Mobile Topup Loan - ({{item.period}} {{item.duration}})
+                        </p>
+                        <p *ngIf="item.type == 'business_loan'" class=" text-muted">
+                         Business Loan - ({{item.period}} {{item.duration}})
+                        </p>
+                        <p *ngIf="item.type == 'utility_loan'" class=" text-muted">
+                         Utility Cash Loan - ({{item.period}} {{item.duration}})
+                        </p>
+                      </td>
+                      <td class=" td-actions text-right">
+                        <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Task" container="body" >
+                          <i class=" tim-icons icon-pencil"> </i>
+                        </button>
+                        <div>
+                            <p class=" card-category d-inline">Start Date: {{item.start_date_str | date}}</p>
+                            <br>
+                            <p class=" card-category d-inline">End Date: {{item.end_date_str | date}}</p>
+                        </div>
+                      </td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+
+              </div>
+
+              <!-- No results found -->
+              <div class="row">
+                <div class="col-md-12">
+
+                  <app-no-result *ngIf="pendingLoans.length == 0 && segment == 'pending'"></app-no-result>
+                  <app-no-result *ngIf="completedLoans.length == 0 && segment == 'completed'"></app-no-result>
+                  
+                </div>
+              </div>
+
+              <div class="spacer"></div>
+
+              <!-- Navigator -->
+              <div class=" row">
+                <div class=" col-md-4">
+                  <div (click)="goLoansBack(segment)" *ngIf="startItem > 0" class=" card-header-add">
+                      <h4 class=" card-title"><i class=" tim-icons icon-minimal-left"> </i> Back</h4>
+                  </div>
+                </div>
+                <div class=" col-md-4">
+                  <div class=" card-header-add3">
+                      <h4 *ngIf="segment == 'pending'" class=" card-title">Showing {{startItem || 0}} - {{endItem || 0}} <br>(Total: {{pendingLoansLength || 0}} )</h4>
+                      <h4 *ngIf="segment == 'completed'" class=" card-title">Showing {{startItem || 0}} - {{endItem || 0}} <br>(Total: {{completedLoansLength || 0}} )</h4>
+                  </div>
+                </div>
+                <div class=" col-md-4">
+                  <div (click)="goLoansNext(segment)" *ngIf="pendingLoans.length != 0 || completedLoans.length != 0" class=" card-header-add2">
+                      <h4 class=" card-title">Next <i class=" tim-icons icon-minimal-right"> </i></h4>
+                  </div>
+                  <div class=" spacer"></div>
+                  <div class=" spacer"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+          <div class=" col-lg-6 col-md-12">
+            <div class=" card">
+              <div class=" card-header">
+                <h4 class=" card-title">Loan Limits</h4>
+              </div>
+              <div class=" card-body">
+                <div class=" table-responsive">
+                  <table class=" table tablesorter" id="">
+                    <thead class=" text-primary">
+                      <tr>
+                        <th>Loan</th>
+                        <th>Min. Amount</th>
+                        <th>Max. Amount</th>
+                        <th>Durations</th>
+                        <th class=" text-center">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of loan_types">
+                        <td><span *ngIf="item.name == 'instant_cash_loan'"> Instant Cash Loan </span> <span *ngIf="item.name == 'mobile_topup_loan'">Mobile Topup Loan</span> <span *ngIf="item.name == 'business_loan'">Business Loan </span> <span *ngIf="item.name == 'utility_loan'">Utility Loan </span></td>
+                        <td>{{loan_limits.country_currency_short}} {{item.min_amount || 0 | number:'.2-2'}}</td>
+                        <td>{{loan_limits.country_currency_short}} {{item.max_amount || 0 | number:'.2-2'}}</td>
+                        <td>
+                          <mat-chip-list *ngFor="let list of item.duration">
+                            <mat-chip selected>{{list.period}} {{list.duration}}</mat-chip>
+                          </mat-chip-list>
+                        </td>
+                        <td class=" td-actions text-right">
+                          <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Limit" container="body" >
+                            <i class=" tim-icons icon-pencil"> </i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      <div class="row">
+        <div class="col-md-12">
+          
+          <!-- Loader -->
+          <app-progress-bar *ngIf="loader"></app-progress-bar>
+          
+        </div>
+      </div>
+      
+      
+    </mat-tab>
+    
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">receipt_long</mat-icon>
+        Transactions
+      </ng-template>
+
+  
+      <div class="row">
+        <div class=" col-md-12">
+          <div class=" card card-plain">
+            <div class=" card-header">
+              <h4 class=" card-title">Transaction History</h4>
+              <p class=" category">All transactions carried out by {{user.first_name | titlecase}} {{user.last_name | titlecase}}.</p>
+            </div>
+            <div class=" card-body">
+              <div *ngIf="!loader" class=" table-responsive">
+                <table class=" table tablesorter" id="">
+                  <thead class=" text-primary">
+                    <tr>
+                      <th>Transaction ID</th>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Remarks</th>
+                      <th class=" text-center">Amount</th>
+                      <th class=" text-center">Date</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of transactions">
+                      <td>{{item.transaction_id || '-'}}</td>
+                      <td>{{item.title || 'N/A' | titlecase}}</td>
+                      <td>{{item.type || 'N/A' | lowercase}}</td>
+                      <td>{{item.sub_title || 'N/A' | titlecase}}</td>
+                      <td class=" text-center">{{item.country_currency_symbol}}{{item.amount || 0 | number:'.2-2'}}</td>
+                      <td class=" text-center">{{item.createdAt || 'N/A' | date:'MMMM d, y - h:mm a'}}</td>
+                      <td>{{item.status || 'N/A' | titlecase}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+    
+              
+              <div class="row">
+                <div class="col-md-12">
+
+                  <!-- No results found -->
+                  <app-no-result *ngIf="!loader && transactions.length == 0"></app-no-result>
+                  <!-- Loader -->
+                  <app-progress-bar *ngIf="loader"></app-progress-bar>
+                  
+                </div>
+              </div>
+    
+            </div>
+
+
+    
+            <!-- Navigator -->
+            <div class=" row">
+              <div class=" col-md-5">
+                <div (click)="goBack()" *ngIf="startItem > 0" class=" card-header-add">
+                    <h4 class=" card-title"><i class=" tim-icons icon-minimal-left"> </i> Back</h4>
+                </div>
+              </div>
+              <div class=" col-md-2">
+                <div class=" card-header-add3">
+                    <h4 class=" card-title">Showing {{startItem || 0}} - {{endItem || 0}} <br>(Total: {{transactions_total_items || 0}} )</h4>
+                </div>
+              </div>
+              <div class=" col-md-5">
+                <div (click)="goNext()" *ngIf="transactions.length != 0" class=" card-header-add2">
+                    <h4 class=" card-title">Next <i class=" tim-icons icon-minimal-right"> </i></h4>
+                </div>
+                <div class=" spacer"></div>
+                <div class=" spacer"></div>
+              </div>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">warning</mat-icon>
+        Actions
+      </ng-template>
+
+        <!-- No results found -->
+        <app-no-result></app-no-result>
+
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">settings</mat-icon>
+        Settings
+      </ng-template>
+
+        <!-- No results found -->
+        <app-no-result></app-no-result>
+      
+    </mat-tab>
+
+  </mat-tab-group>
+  </div>
+</div>
+
+
+</div>
+
+<!-- Loader -->
+<app-loader *ngIf="loading"></app-loader>

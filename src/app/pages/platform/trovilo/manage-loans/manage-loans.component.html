@@ -1,0 +1,121 @@
+
+<div *ngIf="!loading" class=" content">
+  <div class=" row">
+    <div class=" col-md-12">
+      <div class=" card">
+        <div class=" row">
+          <div class=" col-md-11">
+            <div class=" card-header">
+                <h4 class=" card-title d-inline">Manage Loans  |  </h4>
+                <p *ngIf="segment == 'pending'" class=" card-category d-inline">  Active Loans</p>
+                <p *ngIf="segment == 'completed'" class=" card-category d-inline">  Completed Loans</p>
+            </div>
+          </div>
+          <div class=" spacer"></div>
+          <div class=" spacer"></div>
+          <div class=" col-md-1">
+            <span class="align-right">
+                <li class=" search-bar input-group">
+                    <div class="cover" ngbDropdown>
+                      <button
+                        class=" btn btn-link btn-icon"
+                        data-toggle="dropdown"
+                        ngbDropdownToggle
+                        type="button"
+                      >
+                        <i class=" tim-icons icon-settings-gear-63 iconic"> </i>
+                      </button>
+                      <div
+                        aria-labelledby="dropdownMenuLink"
+                        class=" dropdown-menu-right"
+                        ngbDropdownMenu
+                      >
+                        <a href="javascript:void(0)" (click)="changeSegment('pending')" ngbDropdownItem> Active Loans </a>
+                        <a href="javascript:void(0)" (click)="changeSegment('completed')" ngbDropdownItem> Completed Loans </a>
+                      </div>
+                    </div>
+                </li>
+            </span>
+          </div>
+        </div>
+        
+        <div class=" card-body">
+          <div class=" table-responsive">
+            <table *ngIf="segment == 'pending'" class=" table tablesorter" id="">
+              <thead class=" text-primary">
+                <tr>
+                  <th>Contract ID</th>
+                  <th>Receiver Name</th>
+                  <th>Amount</th>
+                  <th>Interest</th>
+                  <th>Total</th>
+                  <th class=" text-center">Duration</th>
+                  <th class=" text-center">Start Date</th>
+                  <th class=" text-center">End Date</th>
+                  <th class=" text-center">Status</th>
+                  <th class=" text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of pendingLoans">
+                  <td>{{item.loan_id || 'N/A'}}</td>
+                  <td>{{item.disbursement[0].account_name || 'N/A'}}</td>
+                  <td>{{item.country_currency_short}} {{item.amount || 0 | number:'.2-2'}}</td>
+                  <td>{{item.country_currency_short}} {{item.interest || 0 | number:'.2-2'}}</td>
+                  <td>{{item.country_currency_short}} {{item.total || 0 | number:'.2-2'}}</td>
+                  <td class=" text-center">{{item.period}} {{item.duration}}</td>
+                  <td class=" text-center">{{item.start_date_str | date}} - {{item.start_date_str | date: 'hh:mm a'}}</td>
+                  <td class=" text-center">{{item.end_date_str | date}} - {{item.end_date_str | date: 'hh:mm a'}}</td>
+                  <td class=" text-center">{{item.status | titlecase}}</td>
+                  <td class=" text-center">
+                    <button class=" btn btn-link" (click)="editLoan(item.loan_id)" type="button" placement="left" ngbTooltip="Edit Loan" container="body" >
+                      <i class=" tim-icons icon-pencil"> </i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table *ngIf="segment == 'completed'" class=" table tablesorter" id="">
+              <thead class=" text-primary">
+                <tr>
+                  <th>Contract ID</th>
+                  <th>Receiver Name</th>
+                  <th>Amount</th>
+                  <th>Interest</th>
+                  <th>Total</th>
+                  <th class=" text-center">Duration</th>
+                  <th class=" text-center">Start Date</th>
+                  <th class=" text-center">End Date</th>
+                  <th class=" text-center">Status</th>
+                  <th class=" text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr (click)="editLoan(item.loan_id)" *ngFor="let item of completedLoans">
+                  <td>{{item.loan_id || 'N/A'}}</td>
+                  <td>{{item.disbursement[0].account_name || 'N/A'}}</td>
+                  <td>{{item.country_currency_short}} {{item.amount || 0 | number:'.2-2'}}</td>
+                  <td>{{item.country_currency_short}} {{item.interest || 0 | number:'.2-2'}}</td>
+                  <td>{{item.country_currency_short}} {{item.total || 0 | number:'.2-2'}}</td>
+                  <td class=" text-center">{{item.period}} {{item.duration}}</td>
+                  <td class=" text-center">{{item.start_date_str | date}} - {{item.start_date_str | date: 'hh:mm a'}}</td>
+                  <td class=" text-center">{{item.end_date_str | date}} - {{item.end_date_str | date: 'hh:mm a'}}</td>
+                  <td class=" text-center">{{item.status | titlecase}}</td>
+                  <td class=" text-center">
+                    <button class=" btn btn-link" type="button" (click)="editLoan(item.loan_id)" placement="left" ngbTooltip="Edit Loan" container="body" >
+                      <i class=" tim-icons icon-pencil"> </i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loader -->
+<app-loader *ngIf="loading"></app-loader>
