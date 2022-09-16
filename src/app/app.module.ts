@@ -24,14 +24,12 @@ import { DashboardComponent } from './pages/platform/trovilo/dashboard/dashboard
 
 import {MatChipsModule} from '@angular/material/chips';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { MyTasksComponent } from './pages/my-tasks/my-tasks.component';
 import { EditUsersComponent } from './pages/platform/trovilo/edit-users/edit-users.component';
 import { LoginComponent } from './pages/login/login.component';
 import {MatDialogModule} from '@angular/material/dialog'; 
 import {MatButtonModule} from '@angular/material/button';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { AppSettingsComponent } from './pages/platform/trovilo/app-settings/app-settings.component';
 import { ManageAdminComponent } from './pages/manage-admin/manage-admin.component';
 import { TransactionHistoryComponent } from './pages/platform/trovilo/transaction-history/transaction-history.component';
 import { ManageLoansComponent } from './pages/platform/trovilo/manage-loans/manage-loans.component';
@@ -59,7 +57,7 @@ import { EditLoansComponent } from './pages/platform/trovilo/edit-loans/edit-loa
     AppRoutingModule,
     ToastrModule.forRoot()
   ],
-  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, UsersComponent, DashboardComponent, MyTasksComponent, EditUsersComponent, LoginComponent, AppSettingsComponent, ManageAdminComponent, TransactionHistoryComponent, ManageLoansComponent, EditLoansComponent],
+  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, UsersComponent, DashboardComponent, EditUsersComponent, LoginComponent, ManageAdminComponent, TransactionHistoryComponent, ManageLoansComponent, EditLoansComponent],
   providers: [],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

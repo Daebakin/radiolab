@@ -72,4 +72,31 @@ export class EditLoansComponent implements OnInit {
     })
   }
 
+  // Update loan
+  updateLoan() {
+    this.loading = true;
+    this.userService.updateLoan(this.loan_id, this.loan)
+    .then((res: any) => {
+      console.log(res)
+      this.loading = false;
+    })
+    .catch(err => {
+      this.loading = false;
+      this.popupNotificationsService.showNotification('top', 'center', err.error.message || "Connection error!");
+    })
+  }
+
+  // Delete loan
+  deleteLoan() {
+    this.loading = true;
+    this.userService.deleteLoan(this.loan_id)
+    .then((res: any) => {
+      console.log(res)
+      this.loading = false;
+    })
+    .catch(err => {
+      this.loading = false;
+      this.popupNotificationsService.showNotification('top', 'center', err.error.message || "Connection error!");
+    })  }
+
 }

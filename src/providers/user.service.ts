@@ -131,4 +131,28 @@ export class UserService {
     })
   }
 
+  // Update loan
+  updateLoan(loan_id: string, postData) {
+    return new Promise((resolve, reject) => {
+      this.http.put(urls.loans + '/' + loan_id, '1.0.0', postData)
+        .then((res: any) => {
+        resolve(res);
+        }, err => {
+         reject(err);
+      })
+    })
+  }
+
+  // Delete loan
+  deleteLoan(loan_id: string) {
+    return new Promise((resolve, reject) => {
+      this.http.delete(urls.loans + '/' + loan_id, '1.0.0')
+        .then((res: any) => {
+        resolve(res);
+        }, err => {
+         reject(err);
+      })
+    })
+  }
+
 }
