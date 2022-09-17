@@ -75,10 +75,11 @@ export class EditLoansComponent implements OnInit {
   // Update loan
   updateLoan() {
     this.loading = true;
-    this.userService.updateLoan(this.loan_id, this.loan)
+    this.userService.updateLoan(this.loan)
     .then((res: any) => {
       console.log(res)
-      this.loading = false;
+      this.getLoanDetails(this.loan_id)
+      this.popupNotificationsService.showNotification('top', 'center', "Loan updated successfully!");
     })
     .catch(err => {
       this.loading = false;
@@ -97,6 +98,7 @@ export class EditLoansComponent implements OnInit {
     .catch(err => {
       this.loading = false;
       this.popupNotificationsService.showNotification('top', 'center', err.error.message || "Connection error!");
-    })  }
+    })  
+  }
 
 }

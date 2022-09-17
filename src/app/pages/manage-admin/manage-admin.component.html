@@ -22,17 +22,6 @@
                 </div>
                 <div class=" col-md-4">
                   <div class=" form-group">
-                    <label> Access Level </label>
-                    <input
-                      class=" form-control"
-                      placeholder="Access Level"
-                      type="text"
-                      [value]="admin.access_level"
-                    />
-                  </div>
-                </div>
-                <div class=" col-md-4">
-                  <div class=" form-group">
                     <label> Role</label>
                     <input
                       class=" form-control"
@@ -163,6 +152,7 @@
                       class=" form-control"
                       placeholder="Status"
                       type="text"
+                      disabled
                       [value]="admin.status"
                     />
                   </div>
@@ -241,89 +231,12 @@
                 <h5 class=" title">{{admin.email}}</h5>
               </a>
               <p class=" description"> {{admin.first_name}} {{admin.last_name}} </p>
-              <button class=" btn btn-fill btn-danger center" type="submit">Add Admin</button>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-  <div class="row">
-    <div class=" col-md-12">
-        <div class=" card">
-          <div class=" card-header">
-            <h4 class=" card-title">All Admin Users</h4>
-          </div>
-          <div class=" card-body">
-            <div class=" table-responsive">
-              <table class=" table tablesorter" id="">
-                <thead class=" text-primary">
-                  <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Role</th>
-                    <th>Access Level</th>
-                    <th>Status</th>
-                    <th>Date of Registration</th>
-                    <th class=" text-center">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of admin_users">
-                    <td>{{item.first_name}} {{item.last_name}}</td>
-                    <td>{{item.email}}</td>
-                    <td>{{item.phone}}</td>
-                    <td>{{item.role}}</td>
-                    <td>{{item.access_level}}</td>
-                    <td>{{item.status}}</td>
-                    <td>{{item.sign_up_date | date}} - {{item.sign_up_date | date:'hh:mm a'}}</td>
-                    <td class=" text-center">
-                        <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Admin" container="body" >
-                            <i class=" tim-icons icon-pencil"> </i>
-                        </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <!-- No results found -->
-          <div class="row">
-            <div class="col-md-12">
-              <app-no-result *ngIf="admin_users.length == 0"></app-no-result>
-            </div>
-          </div>
-
-
-          <div class="spacer"></div>
-          <div class="spacer"></div>
-
-          <!-- Navigator -->
-          <div class=" row">
-            <div class=" col-md-5">
-              <div (click)="goBack()" *ngIf="startItem > 0" class=" card-header-add">
-                  <h4 class=" card-title"><i class=" tim-icons icon-minimal-left"> </i> Back</h4>
-              </div>
-            </div>
-            <div class=" col-md-2">
-              <div class=" card-header-add3">
-                  <h4 class=" card-title">Showing {{startItem || 0}} - {{endItem || 0}}</h4>
-              </div>
-            </div>
-            <div class=" col-md-5">
-              <div (click)="goNext()" *ngIf="admin_users.length != 0" class=" card-header-add2">
-                  <h4 class=" card-title">Next <i class=" tim-icons icon-minimal-right"> </i></h4>
-              </div>
-              <div class=" spacer"></div>
-              <div class=" spacer"></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
   </div>
   
 

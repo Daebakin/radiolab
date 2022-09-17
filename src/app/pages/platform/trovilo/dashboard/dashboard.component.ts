@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { DashboardsService } from "src/providers/dashboard.service";
 import { PopupNotificationsService } from "src/providers/popup-notifications.service";
 import { UserService } from "src/providers/user.service";
@@ -25,7 +26,7 @@ export class DashboardComponent implements OnInit {
   usersLength: any = 0;
   statusCount: any = 0;
 
-  constructor(private userService: UserService, private dashboardsService: DashboardsService, private popupNotificationsService: PopupNotificationsService) {}
+  constructor(private router: Router, private userService: UserService, private dashboardsService: DashboardsService, private popupNotificationsService: PopupNotificationsService) {}
 
   ngOnInit(): void {
     this.getPendingLoans(this.startItem, this.endItem)
@@ -174,5 +175,11 @@ export class DashboardComponent implements OnInit {
       }
     }
   }
+
+  // Edit loan
+  editLoan(loan_id) {
+    this.router.navigate(['/trovilo/edit-loan', loan_id])
+  }
+
 }
 

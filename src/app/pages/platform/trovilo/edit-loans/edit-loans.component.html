@@ -1,5 +1,5 @@
 
-<div class=" content">
+<div *ngIf="!loading" class=" content">
     <div class=" row">
       <div class=" col-md-8">
         <div class=" card">
@@ -716,6 +716,7 @@
                 <i class=" tim-icons icon-single-02"> </i>
               </button>
               <button
+              (click)="deleteLoan()"
                 class=" btn btn-icon btn-round btn-google"
                 href="javascript:void(0)"
               >
@@ -728,3 +729,6 @@
     </div>
   </div>
   
+
+<!-- Loader -->
+<app-loader *ngIf="loading"></app-loader>

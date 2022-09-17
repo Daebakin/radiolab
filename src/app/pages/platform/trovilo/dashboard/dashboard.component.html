@@ -73,13 +73,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of pendingLoans">
+                  <tr (click)="editLoan(item.loan.loan_id)" *ngFor="let item of pendingLoans">
                     <td>{{item.loan.disbursement[0].account_name}}</td>
                     <td>{{item.loan.type}}</td>
                     <td class=" text-center">{{item.loan.country_currency_symbol}}{{item.loan.total || 0 | number:'.2-2'}}</td>
                     <td class=" text-center">{{item.loan.period}} {{item.loan.duration}}</td>
                     <td class=" text-center">
-                      <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Loan" container="body" >
+                      <button (click)="editLoan(item.loan.loan_id)"  class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Loan" container="body" >
                         <i class=" tim-icons icon-pencil"> </i>
                       </button>
                     </td>
@@ -143,13 +143,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of dueTodayLoans">
+                <tr (click)="editLoan(item.loan.loan_id)" *ngFor="let item of dueTodayLoans">
                   <td>{{item.loan.disbursement[0].account_name}}</td>
                   <td>{{item.loan.type}}</td>
                   <td class=" text-center">{{item.loan.country_currency_symbol}}{{item.loan.total || 0 | number:'.2-2'}}</td>
                   <td class=" text-center">{{item.loan.period}} {{item.loan.duration}}</td>
                   <td class=" text-center">
-                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Loan" container="body" >
+                    <button (click)="editLoan(item.loan.loan_id)"  class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Loan" container="body" >
                       <i class=" tim-icons icon-pencil"> </i>
                     </button>
                   </td>
@@ -218,14 +218,14 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of overdueLoans">
+                  <tr (click)="editLoan(item.loan.loan_id)" *ngFor="let item of overdueLoans">
                     <td>{{item.loan.disbursement[0].account_name}}</td>
                     <td>{{item.loan.type}}</td>
                     <td class=" text-center">{{item.loan.country_currency_symbol}}{{item.loan.amount || 0 | number:'.2-2'}}</td>
                     <td class=" text-center">{{item.loan.country_currency_symbol}}{{item.loan.overdue_charge || 0 | number:'.2-2'}}</td>
                     <td class=" text-center">{{item.loan.overdue_days}} days</td>
                     <td class=" text-center">
-                      <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Loan" container="body" >
+                      <button (click)="editLoan(item.loan.loan_id)"  class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Loan" container="body" >
                         <i class=" tim-icons icon-pencil"> </i>
                       </button>
                     </td>
