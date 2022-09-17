@@ -6,7 +6,6 @@
           <div class=" card-header"><h5 class=" title">MANAGE ADMIN</h5></div>
           <hr/>
           <div class=" card-body">
-            <form>
               <div class=" row">
                 <div class=" col-md-4">
                   <div class=" form-group">
@@ -16,7 +15,7 @@
                       disabled
                       placeholder="User ID"
                       type="text"
-                      [value]="admin.user_id"
+                      [(ngModel)]="admin.user_id"
                     />
                   </div>
                 </div>
@@ -28,7 +27,7 @@
                       placeholder="Role"
                       type="text"
                       disabled
-                      [value]="admin.role"
+                      [(ngModel)]="admin.role"
                     />
                   </div>
                 </div>
@@ -43,7 +42,7 @@
                       class=" form-control"
                       placeholder="First Name"
                       type="text"
-                      [value]="admin.first_name"
+                      [(ngModel)]="admin.first_name"
                     />
                   </div>
                 </div>
@@ -54,7 +53,7 @@
                       class=" form-control"
                       placeholder="Last Name"
                       type="text"
-                      [value]="admin.last_name"
+                      [(ngModel)]="admin.last_name"
                     />
                   </div>
                 </div>
@@ -65,7 +64,7 @@
                       class=" form-control"
                       placeholder="Display Name"
                       type="text"
-                      [value]="admin.display_name"
+                      [(ngModel)]="admin.display_name"
                     />
                   </div>
                 </div>
@@ -80,7 +79,7 @@
                       class=" form-control"
                       placeholder="Email"
                       type="text"
-                      [value]="admin.email"
+                      [(ngModel)]="admin.email"
                     />
                   </div>
                 </div>
@@ -91,7 +90,7 @@
                       class=" form-control"
                       placeholder="Last Name"
                       type="text"
-                      [value]="admin.phone"
+                      [(ngModel)]="admin.phone"
                     />
                   </div>
                 </div>
@@ -102,7 +101,7 @@
                       class=" form-control"
                       placeholder="Password"
                       type="text"
-                      [value]="admin.password"
+                      [(ngModel)]="admin.password"
                     />
                   </div>
                 </div>
@@ -116,7 +115,7 @@
                       class=" form-control"
                       placeholder="Address"
                       type="text"
-                      [value]="admin.address"
+                      [(ngModel)]="admin.address"
                     />
                   </div>
                 </div>
@@ -127,7 +126,7 @@
                       class=" form-control"
                       placeholder="City"
                       type="text"
-                      [value]="admin.city"
+                      [(ngModel)]="admin.city"
                     />
                   </div>
                 </div>
@@ -138,7 +137,7 @@
                       class=" form-control"
                       placeholder="State"
                       type="text"
-                      [value]="admin.state"
+                      [(ngModel)]="admin.state"
                     />
                   </div>
                 </div>
@@ -153,7 +152,7 @@
                       placeholder="Status"
                       type="text"
                       disabled
-                      [value]="admin.status"
+                      [(ngModel)]="admin.status"
                     />
                   </div>
                 </div>
@@ -164,7 +163,7 @@
                       class=" form-control"
                       placeholder="Status Reason"
                       type="text"
-                      [value]="admin.status_reason"
+                      [(ngModel)]="admin.status_reason"
                     />
                   </div>
                 </div>
@@ -179,7 +178,7 @@
                       placeholder="Last Login Date"
                       type="text"
                       disabled
-                      [value]="admin.last_login_date"
+                      [(ngModel)]="admin.last_login_date"
                     />
                   </div>
                 </div>
@@ -191,7 +190,7 @@
                       placeholder="Last Updated"
                       type="text"
                       disabled
-                      [value]="admin.updatedAt"
+                      [(ngModel)]="admin.updatedAt"
                     />
                   </div>
                 </div>
@@ -203,16 +202,14 @@
                       placeholder="Date of Registration"
                       type="text"
                       disabled
-                      [value]="admin.sign_up_date"
+                      [(ngModel)]="admin.sign_up_date"
                     />
                   </div>
                 </div>
               </div>
-
-            </form>
           </div>
           <div class=" card-footer">
-            <button class=" btn btn-fill btn-danger" type="submit">Proceed</button>
+            <button (click)="submit()" class=" btn btn-fill btn-danger" type="submit">Proceed</button>
           </div>
         </div>
       </div>

@@ -35,7 +35,29 @@ export class ManageAdminComponent implements OnInit {
     this.adminService.getAdminProfileDetails(this.user_id)
     .then((res: any) => {
       this.admin = res;
+      this.admin.password = atob(res.password);
       this.loading = false;
+      console.log(res)
+    })
+    .catch(err => {
+      this.loading = false;
+      this.popupNotificationsService.showNotification('top', 'center', err.error.message || "Connection error!");
+    })
+  }
+  
+  // Submit 
+  submit() {
+    return this.updateAdmin();
+  }
+
+  // Update admin
+  updateAdmin() {
+    this.loading = true;
+    this.adminService.updateAdmin(this.user_id, this.admin)
+    .then((res: any) => {
+      this.loading = false;
+      this.ngOnInit();
+      this.popupNotificationsService.showNotification('top', 'center', "Admin updated successfully!");
       console.log(res)
     })
     .catch(err => {

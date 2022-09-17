@@ -46,4 +46,30 @@ export class AdminService {
     })
   }
 
+  // Create new admin
+  createNewAdmin(postData) {
+    const url = urls.admin;
+    return new Promise((resolve, reject) => {
+      this.http.post(url, '1.0.0', postData)
+        .then((res: any) => {
+        resolve(res);
+        },err => {
+         reject(err);
+      })
+    })
+  }
+
+  // Update damin
+  updateAdmin(user_id: string, postData) {
+    const url = urls.admin + '/' + user_id;
+    return new Promise((resolve, reject) => {
+      this.http.put(url, '1.0.0', postData)
+        .then((res: any) => {
+        resolve(res);
+        },err => {
+         reject(err);
+      })
+    })
+  }
+  
 }
