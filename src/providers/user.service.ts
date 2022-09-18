@@ -155,4 +155,16 @@ export class UserService {
     })
   }
 
+  // Update complete user profile
+  updateCompleteUserProfile(user_id: string, postData) {
+    return new Promise((resolve, reject) => {
+      this.http.put(urls.profiles + '/' + 'complete' + '/' + user_id, '1.0.0', postData)
+        .then((res: any) => {
+        resolve(res);
+        }, err => {
+         reject(err);
+      })
+    })
+  }
+  
 }

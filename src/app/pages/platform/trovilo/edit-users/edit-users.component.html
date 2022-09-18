@@ -78,7 +78,7 @@
                         disabled
                         placeholder="User ID"
                         type="text"
-                        [value]="user.user_id"
+                        [(ngModel)]="user.user_id"
                       />
                     </div>
                   </div>
@@ -90,7 +90,7 @@
                         placeholder="Platform Name"
                         type="text"
                         disabled
-                        [value]="user.reg_platform"
+                        [(ngModel)]="user.reg_platform"
                       />
                     </div>
                   </div>
@@ -102,7 +102,7 @@
                         placeholder="Referral Code"
                         type="text"
                         disabled
-                        [value]="user.referral_code"
+                        [(ngModel)]="user.referral_code"
                       />
                     </div>
                   </div>
@@ -116,7 +116,7 @@
                         class=" form-control"
                         placeholder="First Name"
                         type="text"
-                        [value]="user.first_name"
+                        [(ngModel)]="user.first_name"
                       />
                     </div>
                   </div>
@@ -127,7 +127,7 @@
                         class=" form-control"
                         placeholder="Middle Name"
                         type="text"
-                        [value]="user.middle_name"
+                        [(ngModel)]="user.middle_name"
                       />
                     </div>
                   </div>
@@ -138,7 +138,7 @@
                         class=" form-control"
                         placeholder="Last Name"
                         type="text"
-                        [value]="user.last_name"
+                        [(ngModel)]="user.last_name"
                       />
                     </div>
                   </div>
@@ -152,7 +152,7 @@
                         class=" form-control"
                         placeholder="Email Address"
                         type="text"
-                        [value]="user.email"
+                        [(ngModel)]="user.email"
                       />
                     </div>
                   </div>
@@ -163,6 +163,7 @@
                         class=" form-control"
                         placeholder="Phone Number"
                         type="text"
+                        [(ngModel)]="user.phone"
                         [value]="user.country_code + ' - ' + user.phone"
                       />
                     </div>
@@ -175,6 +176,7 @@
                         class=" form-control"
                         placeholder="Last Verified Phone Number"
                         type="text"
+                        [(ngModel)]="user.last_verified_phone"
                         [value]="user.country_code + ' - ' + user.last_verified_phone"
                       />
                     </div>
@@ -189,7 +191,7 @@
                         class=" form-control"
                         placeholder="Bank Verification Number"
                         type="text"
-                        [value]="profile.bvn"
+                        [(ngModel)]="profile.bvn"
                       />
                       <label> * BVN - For Individuals from Nigeria Only </label>
                     </div>
@@ -205,11 +207,11 @@
                       [matAutocomplete]="auto1">
                       <mat-autocomplete #auto1="matAutocomplete">
                           <mat-option
-                          (click)="selectGender('Male')" value="Male">
+                           value="Male">
                            Male
                           </mat-option>
                           <mat-option
-                          (click)="selectGender('Female')" value="Female">
+                           value="Female">
                            Female
                           </mat-option>
                       </mat-autocomplete>
@@ -233,7 +235,7 @@
                         class=" form-control"
                         placeholder="Address"
                         type="text"
-                        [value]="user.address"
+                        [(ngModel)]="user.address"
                       />
                     </div>
                   </div>
@@ -244,7 +246,7 @@
                         class=" form-control"
                         placeholder="Postal Code"
                         type="text"
-                        [value]="user.postal_code"
+                        [(ngModel)]="user.postal_code"
                       />
                     </div>
                   </div>
@@ -255,7 +257,7 @@
                         class=" form-control"
                         placeholder="City"
                         type="text"
-                        [value]="user.city"
+                        [(ngModel)]="user.city"
                       />
                     </div>
                   </div>
@@ -266,7 +268,7 @@
                         class=" form-control"
                         placeholder="State"
                         type="text"
-                        [value]="user.state"
+                        [(ngModel)]="user.state"
                       />
                     </div>
                   </div>
@@ -278,6 +280,7 @@
                         placeholder="Country"
                         type="text"
                         disabled
+                        [(ngModel)]="user.country"
                         [value]="user.country + ' - ' + user.country_shortcode"
                       />
                     </div>
@@ -293,7 +296,7 @@
                         disabled
                         placeholder="Country Currency"
                         type="text"
-                        [value]="profile.country_currency_full"
+                        [(ngModel)]="profile.country_currency_full"
                       />
                     </div>
                   </div>
@@ -305,7 +308,7 @@
                         disabled
                         placeholder="Country Currency - ISO 3"
                         type="text"
-                        [value]="profile.country_currency_short"
+                        [(ngModel)]="profile.country_currency_short"
                       />
                     </div>
                   </div>
@@ -317,7 +320,7 @@
                         disabled
                         placeholder="Country Currency Symbol"
                         type="text"
-                        [value]="profile.country_currency_symbol"
+                        [(ngModel)]="profile.country_currency_symbol"
                       />
                     </div>
                   </div>
@@ -329,7 +332,7 @@
                         disabled
                         placeholder="Profile Status"
                         type="text"
-                        [value]="profile.status"
+                        [(ngModel)]="profile.status"
                       />
                     </div>
                   </div>
@@ -341,7 +344,7 @@
                         disabled
                         placeholder="Account Status"
                         type="text"
-                        [value]="user.status"
+                        [(ngModel)]="user.status"
                       />
                     </div>
                   </div>
@@ -355,7 +358,6 @@
                           class=" form-check-input"
                           [(ngModel)]="user.phone_verified"
                           type="checkbox"
-                          value=""
                         />
     
                         <span class=" form-check-sign">
@@ -371,7 +373,6 @@
                           class=" form-check-input"
                           [(ngModel)]="user.terms_of_use"
                           type="checkbox"
-                          value=""
                         />
     
                         <span class=" form-check-sign">
@@ -387,7 +388,6 @@
                           class=" form-check-input"
                           [(ngModel)]="user.newsletter"
                           type="checkbox"
-                          value=""
                         />
     
                         <span class=" form-check-sign">
@@ -403,7 +403,6 @@
                           class=" form-check-input"
                           [(ngModel)]="profile.visibility"
                           type="checkbox"
-                          value=""
                         />
     
                         <span class=" form-check-sign">
@@ -419,7 +418,6 @@
                           class=" form-check-input"
                           [(ngModel)]="profile.automatic_approval"
                           type="checkbox"
-                          value=""
                         />
     
                         <span class=" form-check-sign">
@@ -441,7 +439,7 @@
                         placeholder="Last Login Date"
                         type="text"
                         disabled
-                        [value]="user.last_login_date"
+                        [(ngModel)]="user.last_login_date"
                       />
                     </div>
                   </div>
@@ -453,7 +451,7 @@
                         placeholder="Last Updated"
                         type="text"
                         disabled
-                        [value]="user.updatedAt"
+                        [(ngModel)]="user.updatedAt"
                       />
                     </div>
                   </div>
@@ -465,7 +463,7 @@
                         placeholder="Date of Registration"
                         type="text"
                         disabled
-                        [value]="user.createdAt"
+                        [(ngModel)]="user.createdAt"
                       />
                     </div>
                   </div>
@@ -473,7 +471,7 @@
     
             </div>
             <div class=" card-footer">
-              <button class=" btn btn-fill btn-danger" type="submit">Save</button>
+              <button (click)="save()" class=" btn btn-fill btn-danger" type="submit">Save</button>
             </div>
           </div>
         </div>
@@ -497,25 +495,6 @@
               <div class="spacer"></div>
     
               <div class=" form-group">
-                <label class="display-input"> Account Type </label>
-                <input type="text"
-                class=" form-control"
-                placeholder="Account Type"
-                type="text"
-                [(ngModel)]="profile.account_type"
-                [matAutocomplete]="auto2">
-                <mat-autocomplete #auto2="matAutocomplete">
-                    <mat-option
-                    (click)="selectAccountType('customer')" value="Customer">
-                     Customer
-                    </mat-option>
-                    <mat-option
-                    (click)="selectAccountType('vendor')" value="Vendor">
-                     Vendor
-                    </mat-option>
-                </mat-autocomplete>
-              </div>
-              <div class=" form-group">
                 <label class="display-input"> Profile Status </label>
                 <input type="text"
                 class=" form-control"
@@ -525,11 +504,11 @@
                 [matAutocomplete]="auto3">
                 <mat-autocomplete #auto3="matAutocomplete">
                   <mat-option
-                  (click)="selectAccountStatus('ACTIVE')" value="ACTIVE">
+                   value="ACTIVE">
                   ACTIVE
                   </mat-option>
                   <mat-option
-                  (click)="selectAccountStatus('INACTIVE')" value="INACTIVE">
+                  value="INACTIVE">
                    INACTIVE
                   </mat-option>
                 </mat-autocomplete>
@@ -544,99 +523,33 @@
                 [matAutocomplete]="auto4">
                 <mat-autocomplete #auto4="matAutocomplete">
                     <mat-option
-                    (click)="selectAccountStatus('ACTIVE')" value="ACTIVE">
+                    value="ACTIVE">
                     ACTIVE
                     </mat-option>
                     <mat-option
-                    (click)="selectAccountStatus('INACTIVE')" value="INACTIVE">
+                     value="INACTIVE">
                      INACTIVE
                     </mat-option>
                     <mat-option
-                    (click)="selectAccountStatus('SUSPENDED')" value="SUSPENDED">
+                     value="SUSPENDED">
                      SUSPENDED
                     </mat-option>
                     <mat-option
-                    (click)="selectAccountStatus('BLOCKED')" value="BLOCKED">
+                     value="BLOCKED">
                      BLOCKED
                     </mat-option>
                 </mat-autocomplete>
               </div>
               <div class=" button-container">
-                <button class=" btn btn-fill btn-danger" type="submit">Update</button> 
+                <button (click)="save()" class=" btn btn-fill btn-danger" type="submit">Update</button> 
               </div>
             </div>
-            <div class=" card-footer">
-              <div class=" button-container">
-                <button
-                  class=" btn btn-icon btn-round btn-twitter"
-                  href="javascript:void(0)"
-                >
-                  <i class=" tim-icons icon-button-power"> </i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <mat-accordion *ngFor="let item of virtual_accounts" class="example-headers-align">
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Show Bank Account
-                </mat-panel-title>
-                <mat-panel-description>
-                  {{wallet.country_currency_short}} 
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-                <div class="row">
-                  <div class="col-md-12 col-pad">
-                    <div class="header2">
-                      <div>BANK NAME
-                        <mat-icon class="example-tab-icon202">account_balance</mat-icon>
-                      </div>
-                      <div class="header3">{{item.bank_name}} 
-                      </div>
-                    </div>
-                    <div class="header2">
-                    <div>ACCOUNT NUMBER 
-                      <mat-icon class="example-tab-icon202">pin</mat-icon>
-                    </div>
-                      <div class="header3">{{item.account_number}} 
-                      </div>
-                    </div>
-                    <div class="header2">
-                      <div>ACCOUNT NAME
-                        <mat-icon class="example-tab-icon202">person</mat-icon>
-                      </div>
-                      <div class="header3">{{item.account_name}} 
-                      </div>
-                    </div>
-                    <div class="header2">
-                      <div>CURRENCY
-                        <mat-icon class="example-tab-icon202">attach_money</mat-icon>
-                      </div>
-                      <div class="header3">{{wallet.country_currency_short}} 
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </mat-expansion-panel>
-          </mat-accordion>          
+          </div>      
 
         </div>
       </div>
 
       
-    </mat-tab>
-  
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <mat-icon class="example-tab-icon">credit_card</mat-icon>
-        Credit/Debit Cards
-      </ng-template>
-  
-        <!-- No results found -->
-        <app-no-result></app-no-result>
-
     </mat-tab>
 
     <mat-tab>
@@ -708,8 +621,6 @@
                               <input
                                 class=" form-check-input"
                                 type="checkbox"
-                                [(ngModel)]="checkbox"
-                                [value]="checkbox"
                               />
       
                               <span  class=" form-check-sign">
@@ -735,7 +646,7 @@
                            </p>
                         </td>
                         <td class=" td-actions text-right">
-                          <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Task" container="body" >
+                          <button (click)="editLoan(item.loan_id)" class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Task" container="body" >
                             <i class=" tim-icons icon-pencil"> </i>
                           </button>
                           <div>
@@ -760,7 +671,6 @@
                             <input
                               class=" form-check-input"
                               type="checkbox"
-                              value=""
                             />
     
                             <span class=" form-check-sign">
@@ -786,7 +696,7 @@
                         </p>
                       </td>
                       <td class=" td-actions text-right">
-                        <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Task" container="body" >
+                        <button (click)="editLoan(item.loan_id)" class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Task" container="body" >
                           <i class=" tim-icons icon-pencil"> </i>
                         </button>
                         <div>
@@ -976,28 +886,6 @@
         </div>
       </div>
 
-    </mat-tab>
-
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <mat-icon class="example-tab-icon">warning</mat-icon>
-        Actions
-      </ng-template>
-
-        <!-- No results found -->
-        <app-no-result></app-no-result>
-
-    </mat-tab>
-
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <mat-icon class="example-tab-icon">settings</mat-icon>
-        Settings
-      </ng-template>
-
-        <!-- No results found -->
-        <app-no-result></app-no-result>
-      
     </mat-tab>
 
   </mat-tab-group>

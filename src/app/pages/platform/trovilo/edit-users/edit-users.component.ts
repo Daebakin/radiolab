@@ -101,12 +101,6 @@ export class EditUsersComponent implements OnInit {
     }
   }
 
-  // Update options
-  public updateOptions() {
-    this.myChartData.data.datasets[0].data = this.data;
-    this.myChartData.update();
-  }
-
   // Get complete profile
   getCompleteProfile(user_id) {
     this.loading = true;
@@ -115,7 +109,6 @@ export class EditUsersComponent implements OnInit {
       this.user = res.user;
       this.profile = res.profile;
       this.profile_score = res.profile_score;
-      this.getWallet(user_id)
       this.loading = false;
       localStorage.setItem('user_currency', this.profile.country_currency_short)
     })
@@ -140,23 +133,6 @@ export class EditUsersComponent implements OnInit {
     }) 
   }
   
-  // Get user wallet
-  getWallet(user_id) {
-    this.loader = true;
-    this.userService.getWallet(user_id)
-    .then((res: any) => {
-      this.wallet = res;
-      this.virtual_accounts = res.virtual_accounts;
-      this.virtual_cards = res.virtual_cards;
-      this.loader = false;
-      console.log(res)
-    })
-    .catch(err => {
-      this.loader = false;
-      this.popupNotificationsService.showNotification('top', 'center', err.error.message || "Connection error!");
-    })
-  }
-
   // Load more items
   goNext() {
     if (this.startItem >= 0) {
@@ -181,12 +157,9 @@ export class EditUsersComponent implements OnInit {
 
     } 
     if (index == 1) {
-      
-    }
-    if (index == 2) {
       return this.getLimits(this.user_id, this.startItem, this.endItem);
     }
-    if (index == 3) {
+    if (index == 2) {
       return this.getTransactions(this.user_id, this.startItem, this.endItem);
     }
     if (index == 4) {
@@ -246,5 +219,28 @@ export class EditUsersComponent implements OnInit {
   calculateTransactions(daily, monthly) {
     this.total_transactions_daily = Number(daily.sun || 0) + Number(daily.mon || 0) + Number(daily.tue || 0) + Number(daily.wed || 0) + Number(daily.thu || 0) + Number(daily.fri || 0) + Number(daily.sat || 0);
     this.total_transactions_monthly = Number(monthly.jan || 0) + Number(monthly.feb || 0) + Number(monthly.mar || 0) + Number(monthly.apr || 0) + Number(monthly.may || 0) + Number(monthly.jun || 0) + Number(monthly.jul || 0) + Number(monthly.aug || 0) + Number(monthly.sep || 0) + Number(monthly.oct || 0) + Number(monthly.nov || 0) + Number(monthly.dec || 0);
+  }
+
+  // Save user data
+  save() {
+    delete this.user["_id"];
+    delete this.profile["_id"];
+    delete this.user["user_id"];
+    delete this.profile["user_id"];
+    var postData = {
+      ...this.user,
+      ...this.profile
+    };
+    this.loading = true;
+    this.userService.updateCompleteUserProfile(this.user_id, postData)
+    .then((res: any) => {
+      console.log(res)
+      this.getCompleteProfile(this.user_id)
+      this.popupNotificationsService.showNotification('top', 'center', "User updated successfully!");   
+    })
+    .catch(err => {
+      this.getCompleteProfile(this.user_id)
+      this.popupNotificationsService.showNotification('top', 'center', err.error.message || "Connection error!");   
+    })
   }
 }

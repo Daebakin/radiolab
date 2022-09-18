@@ -73,7 +73,7 @@
                     </td>
                     <td class=" text-center">{{item.createdAt | date}} {{item.createdAt | date:'hh:mm a'}}</td>
                     <td class=" td-actions text-center">
-                      <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit User" container="body" >
+                      <button (click)="manageUser(item)" class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit User" container="body" >
                         <i class=" tim-icons icon-pencil"> </i>
                       </button>
                     </td>
