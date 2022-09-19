@@ -12,7 +12,7 @@ export const apiUrls = {
 }
 
 // API Base URL
-export const baseUrl = apiUrls.localhost;
+export const baseUrl = apiUrls.development;
 
 // API Routes
 export const urls = {

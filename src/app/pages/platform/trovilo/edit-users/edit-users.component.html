@@ -767,7 +767,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let item of loan_types">
+                      <tr (click)="openLoanLimitDialog(loan_limits, item)" *ngFor="let item of loan_types">
                         <td><span *ngIf="item.name == 'instant_cash_loan'"> Instant Cash Loan </span> <span *ngIf="item.name == 'mobile_topup_loan'">Mobile Topup Loan</span> <span *ngIf="item.name == 'business_loan'">Business Loan </span> <span *ngIf="item.name == 'utility_loan'">Utility Loan </span></td>
                         <td>{{loan_limits.country_currency_short}} {{item.min_amount || 0 | number:'.2-2'}}</td>
                         <td>{{loan_limits.country_currency_short}} {{item.max_amount || 0 | number:'.2-2'}}</td>

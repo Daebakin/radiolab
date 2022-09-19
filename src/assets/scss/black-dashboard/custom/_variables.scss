@@ -26,7 +26,7 @@ $gray-900: #212529 !default;
 $link-disabled:              #666666 !default;
 $transparent-bg:             transparent !default;
 $light-bg:                   #f5f6fa !default;
-$dark-background:            #555555 !default;
+$dark-background:            #2C3539 !default;
 
 
 $grays: () !default;
@@ -95,29 +95,29 @@ $colors: map-merge((
 ), $colors);
 
 $default-color-opacity:      rgba(182, 182, 182, .6) !default;
-$orange-color:               #f96332 !default;
+$orange-color:               #2C3539 !default;
 
-$default:       #344675 !default;
-$primary:       #e14eca !default;
+$default:       #2C3539 !default;
+$primary:       #2C3539 !default;
 $secondary:     #f4f5f7 !default;
-$success:       #00f2c3 !default;
-$info:          #1d8cf8 !default;
-$warning:       #ff8d72 !default;
-$danger:        #fd5d93 !default;
+$success:       #2C3539 !default;
+$info:          #2C3539 !default;
+$warning:       #2C3539 !default;
+$danger:        #2C3539 !default;
 $black:         #222a42 !default;
 
 
 // gradient
 $default-states:       #263148 !default;
-$primary-states:       #ba54f5 !default;
-$success-states:       #0098f0 !default;
-$info-states:          #3358f4 !default;
-$warning-states:       #ff6491 !default;
-$danger-states:        #ec250d !default;
+$primary-states:       #2C3539 !default;
+$success-states:       #2C3539 !default;
+$info-states:          #2C3539 !default;
+$warning-states:       #2C3539 !default;
+$danger-states:        #2C3539 !default;
 $black-states:         #1d253b !default;
 
-$background-black:           #1e1e2f !default;
-$background-states-black:    #1e1e24 !default;
+$background-black:           #2C3539 !default;
+$background-states-black:    #2C3539!default;
 
 // opacity
 $default-opacity:      rgba(182, 182, 182, .6) !default;
@@ -135,7 +135,7 @@ $active-gray:                #777777 !default;
 $nav-gray:                   #444444 !default;
 $search-gray:                #b7b7b7 !default;
 $calendar-gray:              #9499a7 !default;
-$active-blue:                #00bbff !default;
+$active-blue:                #2C3539 !default;
 
 
 
