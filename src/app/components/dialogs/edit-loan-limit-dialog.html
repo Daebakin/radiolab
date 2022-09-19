@@ -1,0 +1,81 @@
+<h1 mat-dialog-title>Update Loan Limit</h1>
+<div mat-dialog-content>
+
+</div>
+<div class="spacer"></div>
+
+<div class=" form-group">
+  <label> Min. Amount </label>
+  <input
+    class=" form-control"
+    placeholder="Min. Amount"
+    type="number"
+    [(ngModel)]="data.data.min_amount"
+  />
+</div>
+<div class=" form-group">
+  <label> Max. Amount </label>
+  <input
+    class=" form-control"
+    placeholder="Max. Amount"
+    type="number"
+    [(ngModel)]="data.data.max_amount"
+  />
+</div>
+<div class=" form-group">
+  <label class="display-input"> Add Loan Duration </label>
+  <input type="text"
+  class=" form-control"
+  placeholder="Add Loan Duration"
+  type="text"
+  [matAutocomplete]="auto2">
+  <mat-autocomplete #auto2="matAutocomplete">
+      <mat-option (click)="periodIsSelected(7, data)"
+       value="7">
+       7 Days
+      </mat-option>
+      <mat-option (click)="periodIsSelected(10, data)"
+      value="10">
+       10 Days
+      </mat-option>
+      <mat-option (click)="periodIsSelected(14, data)"
+      value="14">
+       14 Days
+      </mat-option>
+      <mat-option (click)="periodIsSelected(20, data)"
+      value="20">
+       20 Days
+      </mat-option>
+      <mat-option (click)="periodIsSelected(30, data)"
+      value="30">
+       30 Days
+      </mat-option>
+      <mat-option (click)="periodIsSelected(60, data)"
+      value="60">
+       60 Days
+      </mat-option>
+      <mat-option (click)="periodIsSelected(90, data)"
+      value="90">
+       90 Days
+      </mat-option>
+      <mat-option (click)="periodIsSelected(120, data)"
+      value="120">
+       120 Days
+      </mat-option>
+  </mat-autocomplete>
+</div>
+<div class="spacer2"></div>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <mat-chip-list *ngFor="let list of data.data.duration">
+      <mat-chip (click)="removeItem(list.period, data)"  >{{list.period}} {{list.duration}}</mat-chip>
+    </mat-chip-list>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+<div class="spacer2"></div>
+<div>
+  <button class=" btn btn-fill btn-block"  (click)="closeModal('no', null)">Cancel</button>
+  <button class=" btn btn-fill btn-danger btn-block"  (click)="closeModal('yes', data.data)">Proceed</button>
+</div>

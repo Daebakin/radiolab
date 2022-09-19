@@ -167,4 +167,16 @@ export class UserService {
     })
   }
   
+  // Update loan limit
+  updateLoanLimit(user_id: string, postData) {
+    return new Promise((resolve, reject) => {
+      this.http.put(urls.loan_limits + '/' + user_id, '1.0.0', postData)
+        .then((res: any) => {
+        resolve(res);
+        }, err => {
+         reject(err);
+      })
+    })
+  }
+  
 }

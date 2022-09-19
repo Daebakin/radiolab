@@ -1,9 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Chart from 'chart.js';
 import { PopupNotificationsService } from 'src/providers/popup-notifications.service';
 import { UserService } from 'src/providers/user.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+
+export interface DialogData {
+  loan_limit
+}
 
 @Component({
   selector: 'app-edit-users',
@@ -45,7 +51,7 @@ export class EditUsersComponent implements OnInit {
   pendingLoansLength: any = 0;
   completedLoansLength: any = 0;
 
-  constructor(private location: Location, private route: ActivatedRoute, private userService: UserService, private popupNotificationsService: PopupNotificationsService) {
+  constructor(public dialog: MatDialog, private router: Router, private location: Location, private route: ActivatedRoute, private userService: UserService, private popupNotificationsService: PopupNotificationsService) {
     this.route.params.subscribe(params => {
       this.user_id = params['user_id'];
       if (this.user_id) {
@@ -162,9 +168,6 @@ export class EditUsersComponent implements OnInit {
     if (index == 2) {
       return this.getTransactions(this.user_id, this.startItem, this.endItem);
     }
-    if (index == 4) {
-      
-    }
   }
 
   // Get loan limits
@@ -243,4 +246,91 @@ export class EditUsersComponent implements OnInit {
       this.popupNotificationsService.showNotification('top', 'center', err.error.message || "Connection error!");   
     })
   }
+
+
+  // Edit loan
+  editLoan(loan_id) {
+    this.router.navigate(['/trovilo/edit-loan', loan_id])
+  }
+
+  // Open loan limit dialog
+  openLoanLimitDialog(loan_limit, item): void {
+    var dialogRef = this.dialog.open(EditLoanLimitDialog, {
+      width: '250px',
+      data: { data: item },
+    });
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        if (result.event == 'yes') {
+          console.log(result.data)
+          for (var i = 0; i <= loan_limit.types.length - 1; i++) {
+            if (loan_limit.types[i].name == item.name) {
+              loan_limit.types.splice(i, 1);
+            }
+          }
+          loan_limit.types.push(result.data);
+          return this.updateLoanLimit(loan_limit)
+        }
+      }
+    });
+  }
+
+  // Update loan limit
+  updateLoanLimit(data) {
+    this.loader = true;
+    this.userService.updateLoanLimit(this.user_id, data)
+    .then((res: any) => {
+      this.getLimits(this.user_id, this.startItem, this.endItem);
+      this.popupNotificationsService.showNotification('top', 'center', "Loan limit updated successfully!");   
+    })
+    .catch(err => {
+      this.getLimits(this.user_id, this.startItem, this.endItem);
+      this.popupNotificationsService.showNotification('top', 'center', err.error.message || "Connection error!");   
+    }) 
+  }
+
+}
+
+
+@Component({
+  selector: 'edit-loan-limit-dialog',
+  templateUrl: '../../../../components/dialogs/edit-loan-limit-dialog.html',
+})
+export class EditLoanLimitDialog {
+  constructor(
+    public dialogRef: MatDialogRef<EditLoanLimitDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+  ) {
+    console.log(data)
+  }
+
+  // Remove item from array
+  removeItem(period: number, data) {
+    var duration = data.data.duration;
+    console.log(duration)
+    for (var i = 0; i <= duration.length - 1; i ++) {
+      if (duration[i].period == period) {
+        duration.splice(i, 1);
+      }
+    }
+  }
+
+  // Period is selected
+  periodIsSelected(period: number, data) {
+    var duration = data.data.duration;
+    for (var i = 0; i <= duration.length - 1; i ++) {
+      if (duration[i].period == period) {
+        duration.splice(i, 1);
+      }
+    }
+    duration.push({ duration: "days", period: period })
+  }
+
+  // Close modal
+  closeModal(event, data): void {
+    this.dialogRef.close({
+     event, data
+    });
+  }
+
 }
