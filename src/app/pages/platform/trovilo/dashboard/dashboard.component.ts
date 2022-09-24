@@ -84,20 +84,6 @@ export class DashboardComponent implements OnInit {
     .then((res: any) => {
       this.overdueLoans = res.data;
       this.overdueLoansLength = res.total_items;
-      this.getConversionRates()
-    })
-    .catch(err => {
-      this.loading = false;
-      this.getConversionRates()
-      this.popupNotificationsService.showNotification('top', 'center', err.error.message || "Connection error!");
-    })
-  }
-
-  // Get conversion rate
-  getConversionRates() {
-    this.dashboardsService.getConversionRates("NGN")
-    .then((res: any) => {
-      this.conversion_rates = res;
       this.getUsers(this.startItem, this.endItem)
     })
     .catch(err => {
@@ -182,4 +168,3 @@ export class DashboardComponent implements OnInit {
   }
 
 }
-
