@@ -1,14 +1,5 @@
 import { Routes } from "@angular/router";
 
-//import { DashboardComponent } from "../../pages/dashboard/dashboard.component";
-import { IconsComponent } from "../../pages/icons/icons.component";
-import { MapComponent } from "../../pages/map/map.component";
-import { NotificationsComponent } from "../../pages/notifications/notifications.component";
-import { UserComponent } from "../../pages/user/user.component";
-import { TablesComponent } from "../../pages/tables/tables.component";
-import { TypographyComponent } from "../../pages/typography/typography.component";
-// import { RtlComponent } from "../../pages/rtl/rtl.component";
-
 // Added Routes
 import { UsersComponent } from "src/app/pages/platform/trovilo/users/users.component";
 import { DashboardComponent } from "src/app/pages/platform/trovilo/dashboard/dashboard.component";
@@ -20,13 +11,6 @@ import { ManageLoansComponent } from "src/app/pages/platform/trovilo/manage-loan
 import { EditLoansComponent } from "src/app/pages/platform/trovilo/edit-loans/edit-loans.component";
 
 export const AdminLayoutRoutes: Routes = [
-  { path: "dashboard", component: DashboardComponent },
-  { path: "icons", component: IconsComponent },
-  { path: "maps", component: MapComponent },
-  { path: "notifications", component: NotificationsComponent },
-  { path: "user", component: UserComponent },
-  { path: "tables", component: TablesComponent },
-  { path: "typography", component: TypographyComponent },
 
   //Added Routes
 
